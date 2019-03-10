@@ -1,0 +1,1 @@
+INSERT INTO users(id,name,password,created_at) VALUES('dev@demo.co.jp','山田太郎','$2a$10$5ltUX/.ogJRHrbwn9hG2sOd8Y1krWn8mhYWbBnpCYSSjSCIoTdAke',current_timestamp);

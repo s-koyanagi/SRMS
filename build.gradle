@@ -1,0 +1,40 @@
+buildscript {
+	ext {
+		springBootVersion = '2.1.2.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'idea'
+idea.module.inheritOutputDirs = true
+
+processResources.destinationDir = compileJava.destinationDir
+compileJava.dependsOn processResources
+
+group = 'com.example.srms.domain.repository.UserDao'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.seasar.doma.boot:doma-spring-boot-starter:1.1.0'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity4'
+	implementation 'org.projectlombok:lombok:1.16.22'
+	implementation 'org.seasar.doma:doma:2.19.0'
+	implementation 'com.h2database:h2'
+}

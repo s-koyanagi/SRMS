@@ -1,0 +1,45 @@
+### gradle ###
+.gradle
+!gradle/wrapper/gradle-wrapper.jar
+
+### Maven ###
+target
+
+### build ###
+out
+build
+bin
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### h2 ###
+.data
+db.mv.db
+db.trace.db
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### Eclipse ###
+.project
+.classpath
+.settings
+
+### OS ###
+Thumbs.db
+.DS_Store
+
+### Other ###
+*.log
+*.swp
+*.bak
