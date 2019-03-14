@@ -1,0 +1,52 @@
+<html
+        xmlns        = "http://www.w3.org/1999/xhtml"
+        xmlns:th     = "http://www.thymeleaf.org"
+        xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorator="layout"
+>
+<head>
+    <title>ログイン</title>
+    <link rel="stylesheet" href="../../static/css/uikit.min.css" th:href="@{/css/uikit.min.css}">
+    <script src="../../static/js/uikit.min.js" th:src="@{/js/uikit.min.js}"></script>
+    <script src="../../static/js/uikit-icons.min.js" th:src="@{/js/uikit-icons.min.js}"></script>
+</head>
+<body>
+        <div class="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade" uk-height-viewport>
+                <div class="uk-width-1-1">
+                    <div class="uk-container">
+                        <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid>
+                            <div class="uk-width-1-1@m">
+                                <div class="uk-margin uk-width-large uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
+                                    <h3 class="uk-card-title uk-text-center">参加申込</h3>
+                                    <div class="uk-text-small uk-text-center">
+                                            メールアドレスと氏名を入力してください
+                                    </div>
+                                    <form method="POST" th:action="@{/index/form/entry}" th:object="${entryForm}">
+                                        <div th:text="${errorMessage}?: ''" class="uk-text-danger"></div>
+                                        <div class="uk-margin">
+                                            <p th:if="${#fields.hasErrors('*{mail_address}')}" th:errors="*{mail_address}" class="uk-text-danger"></p>
+                                            <div class="uk-inline uk-width-1-1">
+                                                <span class="uk-form-icon" uk-icon="icon: mail"></span>
+                                                <input class="uk-input uk-form-large uk-text-small" th:field="*{mail_address}" type="email" placeholder="Email">
+                                            </div>
+                                        </div>
+                                        <div class="uk-margin">
+                                            <p th:if="${#fields.hasErrors('*{name}')}" th:errors="*{name}" class="uk-text-danger"></p>
+                                            <div class="uk-inline uk-width-1-1">
+                                                <span class="uk-form-icon" uk-icon="icon: user"></span>
+                                                <input class="uk-input uk-form-large uk-text-small" th:field="*{name}" type="text" placeholder="Name">	
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="seminar_id" th:value="${mv.seminar_id}" />
+                                        <div class="uk-margin">
+                                            <button type="submit" class="uk-button uk-button-primary uk-button-large uk-width-1-1">申し込む</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</body>
+</html>
