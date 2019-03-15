@@ -19,7 +19,6 @@ idea.module.inheritOutputDirs = true
 processResources.destinationDir = compileJava.destinationDir
 compileJava.dependsOn processResources
 
-group = 'com.example.srms.domain.repository.UserDao'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
