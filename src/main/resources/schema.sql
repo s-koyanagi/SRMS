@@ -14,8 +14,10 @@ CREATE TABLE IF NOT EXISTS seminars(
     started_at TIMESTAMP NOT NULL,
     closed_at TIMESTAMP NOT NULL,
     created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP ,
-    deleted_at TIMESTAMP ,
+    updated_at TIMESTAMP,
+    deleted_at TIMESTAMP,
+    accepting_flag integer NOT NULL,
+    version integer NOT NULL,
     PRIMARY KEY(seminar_id)
 );
 CREATE TABLE IF NOT EXISTS applicants(
@@ -24,8 +26,8 @@ CREATE TABLE IF NOT EXISTS applicants(
     name TEXT NOT NULL,
     mail_address TEXT NOT NULL,
     created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP ,
-    deleted_at TIMESTAMP ,
+    updated_at TIMESTAMP,
+    deleted_at TIMESTAMP,
     PRIMARY KEY(applicant_id)
 );
 CREATE TABLE IF NOT EXISTS speakers(
@@ -36,7 +38,7 @@ CREATE TABLE IF NOT EXISTS speakers(
     started_at TIME NOT NULL,
     closed_at TIME NOT NULL,
     created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP ,
-    deleted_at TIMESTAMP ,
+    updated_at TIMESTAMP,
+    deleted_at TIMESTAMP,
     PRIMARY KEY(speaker_id)
 );
