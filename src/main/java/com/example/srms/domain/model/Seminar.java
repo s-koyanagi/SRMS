@@ -10,7 +10,7 @@ import java.util.Date;
 @Getter
 @Entity
 @Table(name="seminars")
-public class SeminarEntity {
+public class Seminar {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +22,7 @@ public class SeminarEntity {
     private Date created_at;
     private Date updated_at;
     private Date deleted_at;
+    private int accepting_flag;
     @Version
     private Integer version;
 
