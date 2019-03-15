@@ -1,6 +1,6 @@
-package com.example.srms.domain.repository;
+package com.example.srms.domain.dao;
 
-import com.example.srms.domain.model.UserInfoEntity;
+import com.example.srms.domain.model.UserInfo;
 import org.seasar.doma.Dao;
 import org.seasar.doma.Select;
 import org.seasar.doma.boot.ConfigAutowireable;
@@ -10,5 +10,5 @@ import org.seasar.doma.boot.ConfigAutowireable;
 public interface UserDao {
 
     @Select
-    public UserInfoEntity selectByUserId(String userId);
+    public UserInfo selectByUserId(String userId);
 }

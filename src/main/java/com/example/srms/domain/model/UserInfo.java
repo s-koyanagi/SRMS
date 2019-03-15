@@ -14,7 +14,7 @@ import java.util.Collection;
 @Getter
 @Entity
 @Table(name="users")
-public class UserInfoEntity implements UserDetails {
+public class UserInfo implements UserDetails {
 
     @Id
     private String id;
