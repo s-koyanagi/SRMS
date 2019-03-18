@@ -21,7 +21,7 @@
                                     <div class="uk-text-small uk-text-center">
                                             メールアドレスと氏名を入力してください
                                     </div>
-                                    <form method="POST" th:action="@{/index/entry/work}" th:object="${entryForm}">
+                                    <form method="POST" th:action="@{/entry/work}" th:object="${entryForm}">
                                         <div th:text="${errorMessage}?: ''" class="uk-text-danger"></div>
                                         <div class="uk-margin">
                                             <p th:if="${#fields.hasErrors('*{mail_address}')}" th:errors="*{mail_address}" class="uk-text-danger"></p>
