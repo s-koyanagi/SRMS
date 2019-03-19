@@ -29,4 +29,11 @@ public class EntryController {
         return mv;
     }
 
+    @RequestMapping(value="/work", method=RequestMethod.POST)
+    public ModelAndView registration(ModelAndView mv,EntryForm form){
+        //form→DTOへ変換
+        mv.setViewName("entry/confirm");
+        return mv;
+    }
+
 }
