@@ -1,4 +1,4 @@
-package com.example.srms.domain.model;
+package com.example.srms.domain.entity;
 
 import lombok.Getter;
 import lombok.Setter;

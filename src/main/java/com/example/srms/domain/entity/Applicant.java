@@ -1,4 +1,4 @@
-package com.example.srms.domain.model;
+package com.example.srms.domain.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,20 +9,18 @@ import java.util.Date;
 @Setter
 @Getter
 @Entity
-@Table(name="seminars")
-public class Seminar {
+@Table(name="applicants")
+public class Applicant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int applicant_id;
     private int seminar_id;
-    private String title;
-    private String overview;
-    private Date started_at;
-    private Date closed_at;
+    private String name;
+    private String mail_address;
     private Date created_at;
     private Date updated_at;
     private Date deleted_at;
-    private int accepting_flag;
     @Version
     private Integer version;
 

@@ -1,6 +1,6 @@
 package com.example.srms.service;
 
-import com.example.srms.domain.model.UserInfo;
+import com.example.srms.domain.entity.UserInfo;
 import com.example.srms.domain.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

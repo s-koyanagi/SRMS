@@ -1,7 +1,7 @@
 package com.example.srms.service;
 
 import com.example.srms.domain.dao.SeminarDao;
-import com.example.srms.domain.model.Seminar;
+import com.example.srms.domain.entity.Seminar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
