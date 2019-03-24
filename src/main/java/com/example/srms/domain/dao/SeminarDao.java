@@ -10,5 +10,5 @@ import org.seasar.doma.boot.ConfigAutowireable;
 public interface SeminarDao {
 
     @Select
-    public Seminar selectByAcceptingFlag(int acceptingFlag);
+    Seminar selectByAcceptingFlag(int acceptingFlag);
 }
