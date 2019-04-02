@@ -1,11 +1,11 @@
 CREATE TABLE IF NOT EXISTS users(
-    id varchar(255) NOT NULL,
+    user_id varchar(6) NOT NULL UNIQUE,
     name TEXT NOT NULL,
     password TEXT NOT NULL,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP ,
     deleted_at TIMESTAMP ,
-    PRIMARY KEY(id)
+    PRIMARY KEY(user_id)
 );
 CREATE TABLE IF NOT EXISTS seminars(
     seminar_id identity NOT NULL,
@@ -20,11 +20,10 @@ CREATE TABLE IF NOT EXISTS seminars(
     version integer NOT NULL,
     PRIMARY KEY(seminar_id)
 );
-CREATE TABLE IF NOT EXISTS applicants(
-    applicant_id identity NOT NULL,
-    seminar_id integer NOT NULL,
-    name TEXT NOT NULL,
-    mail_address TEXT NOT NULL,
+CREATE TABLE IF NOT EXISTS guests(
+    guest_id identity NOT NULL,
+    seminar_id integer NOT NULL REFERENCES seminars (seminar_id),
+    user_id TEXT NOT NULL REFERENCES users (user_id),
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP,
     deleted_at TIMESTAMP,
@@ -32,7 +31,7 @@ CREATE TABLE IF NOT EXISTS applicants(
 );
 CREATE TABLE IF NOT EXISTS speakers(
     speaker_id identity NOT NULL,
-    seminar_id integer NOT NULL,
+    seminar_id integer NOT NULL REFERENCES seminars (seminar_id),
     name TEXT NOT NULL,
     theme TEXT NOT NULL,
     started_at TIME NOT NULL,
