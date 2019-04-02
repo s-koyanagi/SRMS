@@ -1,6 +1,6 @@
 package com.example.srms.service;
 
-import com.example.srms.domain.entity.UserInfo;
+import com.example.srms.domain.entity.User;
 import com.example.srms.domain.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,11 +21,11 @@ public class AuthService implements UserDetailsService {
             throw new UsernameNotFoundException("ユーザーIDが未入力です");
         }
 
-        UserInfo userInfo = userDao.selectByUserId(userId);
-        if(userInfo == null) {
+        User user = userDao.selectByUserId(userId);
+        if(user == null) {
             throw new UsernameNotFoundException("ユーザーIDが不正です。");
         }
 
-        return userInfo;
+        return user;
     }
 }

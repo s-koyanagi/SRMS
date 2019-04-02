@@ -2,12 +2,10 @@ package com.example.srms.service;
 
 import com.example.srms.domain.dao.EntryDao;
 import com.example.srms.domain.dto.ApplicantInfoDto;
-import com.example.srms.domain.entity.Applicant;
+import com.example.srms.domain.entity.Guest;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Date;
 
 @Service
 public class EntryService {
@@ -20,9 +18,9 @@ public class EntryService {
 
 
     public int newEntry(ApplicantInfoDto applicantInfoDto){
-        Applicant applicant = new Applicant();
-        applicant = modelMapper.map(applicantInfoDto,applicant.getClass());
-        return entryDao.insert(applicant);
+        Guest guest = new Guest();
+        guest = modelMapper.map(applicantInfoDto, guest.getClass());
+        return entryDao.insert(guest);
     }
 
 }
