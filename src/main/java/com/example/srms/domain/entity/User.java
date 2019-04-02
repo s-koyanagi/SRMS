@@ -14,10 +14,10 @@ import java.util.Collection;
 @Getter
 @Entity
 @Table(name="users")
-public class UserInfo implements UserDetails {
+public class User implements UserDetails {
 
     @Id
-    private String id;
+    private String user_id;
     private String name;
     private String password;
 
