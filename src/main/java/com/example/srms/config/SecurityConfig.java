@@ -36,21 +36,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/","/index/**","/admin","/entry/**").permitAll() // 全ユーザ公開
+                .antMatchers("/","/index").permitAll() // 全ユーザ公開
                 .anyRequest().authenticated();
         // ログイン設定
         http.formLogin()
-                .loginProcessingUrl("/admin/login")
-                .loginPage("/admin")            // ログインフォームのパス
-                .defaultSuccessUrl("/admin/top")     // 認証成功時の遷移先
-                .failureForwardUrl("/admin/index")         // 認証失敗時の遷移先
-                .usernameParameter("userId").passwordParameter("password")  // IDとパスワードのパラメータ名
+                .loginProcessingUrl("/index/login")
+                .loginPage("/index")            // ログインフォームのパス
+                .defaultSuccessUrl("/{esqId}")     // 認証成功時の遷移先
+                .failureForwardUrl("/index/index")         // 認証失敗時の遷移先
+                .usernameParameter("esqId").passwordParameter("password")  // IDとパスワードのパラメータ名
                 .and();
 
         // ログアウト設定
         http.logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))       // ログアウト処理のパス
-                .logoutSuccessUrl("/admin")
+                .logoutSuccessUrl("/index")
                 .deleteCookies("JSESSIONID")
                 .invalidateHttpSession(true).permitAll();
     }

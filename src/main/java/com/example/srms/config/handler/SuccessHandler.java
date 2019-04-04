@@ -19,8 +19,8 @@ public class SuccessHandler implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {
 
-        //「/menu/」にリダイレクトする
-        response.sendRedirect(request.getContextPath() + "/menu/");
+        //「/mypage/」にリダイレクトする
+        response.sendRedirect(request.getContextPath() + "/mypage/");
 
     }
 
