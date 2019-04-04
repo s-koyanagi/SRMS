@@ -1,6 +1,6 @@
 package com.example.srms.web.controller;
 
-import com.example.srms.domain.dto.ApplicantInfoDto;
+import com.example.srms.domain.dto.GuestInfoDto;
 import com.example.srms.service.EntryService;
 import com.example.srms.service.SeminarService;
 import com.example.srms.web.form.EntryForm;
@@ -41,14 +41,14 @@ public class EntryController {
 
     @RequestMapping(value="/work", method=RequestMethod.POST)
     public ModelAndView registration(ModelAndView mv,EntryForm form){
-        ApplicantInfoDto applicantInfoDto = new ApplicantInfoDto();
-        applicantInfoDto = modelMapper.map(form,applicantInfoDto.getClass());
-        if(entryService.newEntry(applicantInfoDto)==0){
+        GuestInfoDto guestInfoDto = new GuestInfoDto();
+        guestInfoDto = modelMapper.map(form, guestInfoDto.getClass());
+        if(entryService.newEntry(guestInfoDto)==0){
             mv.addObject("errorMessage","入力内容は既に申込済です");
             mv.setViewName("entry/index");
             return mv;
         }
-        mv.addObject("entryContents",applicantInfoDto);
+        mv.addObject("entryContents", guestInfoDto);
         mv.setViewName("entry/confirm");
         return mv;
     }

@@ -1,6 +1,6 @@
 package com.example.srms.web.controller;
 
-import com.example.srms.web.form.IndexForm;
+import com.example.srms.web.form.LoginForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -15,30 +15,24 @@ public class AdminController {
 
     // Init login form
     @ModelAttribute
-    public IndexForm initForm(){
-        return new IndexForm();
+    public LoginForm loginForm(){
+        return new LoginForm();
     }
 
     // View login page
     @RequestMapping(value={""}, method= RequestMethod.GET)
     public ModelAndView index(ModelAndView mv){
-        mv.setViewName("admin/index");
+        mv.setViewName("index/index");
         return mv;
     }
 
     // Authentication error handler
     @RequestMapping(value = {"/index"}, method = RequestMethod.POST)
-    public ModelAndView login(@ModelAttribute @Validated IndexForm form, BindingResult result, ModelAndView mv) {
+    public ModelAndView loginFailure(@ModelAttribute @Validated LoginForm form, BindingResult result, ModelAndView mv) {
         if(!result.hasErrors()) {
             mv.addObject("errorMessage", "ログイン情報が間違っています");
         }
-        mv.setViewName("admin/index");
-        return mv;
-    }
-
-    @RequestMapping(value={"/top"}, method= RequestMethod.GET)
-    public ModelAndView top(ModelAndView mv){
-        mv.setViewName("admin/top");
+        mv.setViewName("index/index");
         return mv;
     }
 }

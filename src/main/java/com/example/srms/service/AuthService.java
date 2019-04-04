@@ -15,13 +15,13 @@ public class AuthService implements UserDetailsService {
     private UserDao userDao; // repositoryを指定
 
     @Override
-    public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String esqId) throws UsernameNotFoundException {
 
-        if(userId == null || "".equals(userId)) {
+        if(esqId == null || "".equals(esqId)) {
             throw new UsernameNotFoundException("ユーザーIDが未入力です");
         }
 
-        User user = userDao.selectByUserId(userId);
+        User user = userDao.selectByUserId(esqId);
         if(user == null) {
             throw new UsernameNotFoundException("ユーザーIDが不正です。");
         }

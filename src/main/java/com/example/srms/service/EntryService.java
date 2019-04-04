@@ -1,7 +1,7 @@
 package com.example.srms.service;
 
 import com.example.srms.domain.dao.EntryDao;
-import com.example.srms.domain.dto.ApplicantInfoDto;
+import com.example.srms.domain.dto.GuestInfoDto;
 import com.example.srms.domain.entity.Guest;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +17,9 @@ public class EntryService {
     ModelMapper modelMapper;
 
 
-    public int newEntry(ApplicantInfoDto applicantInfoDto){
+    public int newEntry(GuestInfoDto guestInfoDto){
         Guest guest = new Guest();
-        guest = modelMapper.map(applicantInfoDto, guest.getClass());
+        guest = modelMapper.map(guestInfoDto, guest.getClass());
         return entryDao.insert(guest);
     }
 
