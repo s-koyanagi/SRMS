@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/menu")
-public class MenuController {
+@RequestMapping("/{esqId}")
+public class MyPageController {
 
     @RequestMapping(value = {""}, method = RequestMethod.GET)
     public ModelAndView index(ModelAndView mv) {
-        mv.setViewName("menu/index");
+        mv.setViewName("mypage/index");
         return mv;
     }
 

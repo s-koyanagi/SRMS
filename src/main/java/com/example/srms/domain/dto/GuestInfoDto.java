@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Setter
 @Getter
-public class ApplicantInfoDto {
+public class GuestInfoDto {
 
     private int seminar_id;
     private String name;

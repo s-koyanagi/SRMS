@@ -8,10 +8,10 @@ import javax.validation.constraints.NotEmpty;
 
 @Getter
 @Setter
-public class IndexForm {
+public class LoginForm {
 
     @NotEmpty
-    private String userId;
+    private String esqId;
     @NotEmpty
     private String password;
 }
