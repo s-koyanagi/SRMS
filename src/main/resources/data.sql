@@ -1,4 +1,4 @@
-INSERT INTO users(id,name,password,created_at)
+INSERT INTO users(esq_id,name,password,created_at)
 VALUES('lk9999','山田太郎','$2a$10$5ltUX/.ogJRHrbwn9hG2sOd8Y1krWn8mhYWbBnpCYSSjSCIoTdAke',current_timestamp);
 INSERT INTO seminars(title,overview,started_at,closed_at,created_at,accepting_flag,version)
 VALUES('第99回 開発技術セミナー 〜SpringBoot特集〜',

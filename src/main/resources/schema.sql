@@ -1,11 +1,11 @@
 CREATE TABLE IF NOT EXISTS users(
-    user_id varchar(6) NOT NULL UNIQUE,
+    esq_id varchar(6) NOT NULL,
     name TEXT NOT NULL,
     password TEXT NOT NULL,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP ,
     deleted_at TIMESTAMP ,
-    PRIMARY KEY(user_id)
+    PRIMARY KEY(esq_id)
 );
 CREATE TABLE IF NOT EXISTS seminars(
     seminar_id identity NOT NULL,
@@ -23,11 +23,11 @@ CREATE TABLE IF NOT EXISTS seminars(
 CREATE TABLE IF NOT EXISTS guests(
     guest_id identity NOT NULL,
     seminar_id integer NOT NULL REFERENCES seminars (seminar_id),
-    user_id TEXT NOT NULL REFERENCES users (user_id),
+    esq_id varchar(6) NOT NULL REFERENCES users (esq_id),
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP,
     deleted_at TIMESTAMP,
-    PRIMARY KEY(applicant_id)
+    PRIMARY KEY(guest_id)
 );
 CREATE TABLE IF NOT EXISTS speakers(
     speaker_id identity NOT NULL,

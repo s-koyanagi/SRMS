@@ -1,9 +1,8 @@
 INSERT INTO
-applicants (seminar_id, name, mail_address, created_at)
+applicants (seminar_id, esq_id, created_at)
 SELECT
-/* applicant.seminar_id */1,
-/* applicant.name */'山田',
-/* applicant.mail_address */'tes@test.co.jp',
+/* guest.seminar_id */1,
+/* guest.esq_id */'lk9999',
 current_timestamp
 FROM
 dual
@@ -13,9 +12,8 @@ NOT EXISTS
 SELECT
 seminar_id
 FROM
-applicants
+guest
 WHERE
-seminar_id = /* applicant.seminar_id */1
-AND name = /* applicant.name */'山田'
-AND mail_address = /* applicant.mail_address */'tes@test.co.jp'
+seminar_id = /* guest.seminar_id */1
+AND name = /* guest.esq_id */'lk9999'
 )

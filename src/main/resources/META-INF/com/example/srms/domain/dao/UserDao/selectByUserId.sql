@@ -1,8 +1,8 @@
 select
-    id,
+    esq_id,
     name,
     password
 from
     users
 where
-    id = /*userId*/''
+    esq_id = /*esqId*/''
