@@ -16,7 +16,7 @@ public class Guest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int guest_id;
     private int seminar_id;
-    private String user_id;
+    private String esq_id;
     private Date created_at;
     private Date updated_at;
     private Date deleted_at;

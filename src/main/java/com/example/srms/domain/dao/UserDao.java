@@ -10,5 +10,5 @@ import org.seasar.doma.boot.ConfigAutowireable;
 public interface UserDao {
 
     @Select
-    public User selectByUserId(String userId);
+    public User selectByUserId(String esqId);
 }
