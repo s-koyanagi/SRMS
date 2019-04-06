@@ -36,14 +36,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/","/index").permitAll() // 全ユーザ公開
+                .antMatchers("/index").permitAll() // 全ユーザ公開
                 .anyRequest().authenticated();
         // ログイン設定
         http.formLogin()
                 .loginProcessingUrl("/index/login")
                 .loginPage("/index")            // ログインフォームのパス
-                .defaultSuccessUrl("/{esqId}")     // 認証成功時の遷移先
-                .failureForwardUrl("/index/index")         // 認証失敗時の遷移先
+                .defaultSuccessUrl("/mypage")     // 認証成功時の遷移先
+                .failureForwardUrl("/index/login_error")         // 認証失敗時の遷移先
                 .usernameParameter("esqId").passwordParameter("password")  // IDとパスワードのパラメータ名
                 .and();
 

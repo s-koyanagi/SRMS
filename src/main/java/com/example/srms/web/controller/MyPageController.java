@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/{esqId}")
+@RequestMapping("/mypage")
 public class MyPageController {
 
     @RequestMapping(value = {""}, method = RequestMethod.GET)
