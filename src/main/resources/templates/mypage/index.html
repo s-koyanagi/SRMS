@@ -5,11 +5,38 @@
         layout:decorator="layout"
 >
     <head>
-        <title>メニュー</title>
+        <title>MyPage</title>
+        <link rel="stylesheet" href="../../static/css/uikit.min.css" th:href="@{/css/uikit.min.css}">
+        <script src="../../static/js/uikit.min.js" th:src="@{/js/uikit.min.js}"></script>
+        <script src="../../static/js/uikit-icons.min.js" th:src="@{/js/uikit-icons.min.js}"></script>    
     </head>
     <body>
-        <div layout:fragment="contents">
-            <h2>メニュー</h2>
+        <nav class="uk-navbar-container uk-margin" uk-navbar>
+            <div class="uk-navbar-left">
+        
+                <a class="uk-navbar-item uk-logo" href="#">INTERTECH SEMINAR</a>
+            </div>      　　　　　
+            <div class="uk-navbar-right">
+                <div class="uk-navbar-item">
+                        <div>小柳 匠平さん</div>
+                </div>
+
+                <div class="uk-navbar-item">
+                    <button class="uk-button uk-button-default">ログアウト</button>
+                </div>
+            </div>           
+        </nav>
+        <div class="uk-grid-large uk-margin-medium uk-grid-match uk-margin-xLarge-left uk-margin-xLarge-right uk-child-width-1-4" uk-grid>
+            <div class="uk-card uk-card-default uk-card-body">
+                <h4 class="uk-text-center">参加申込</h4>
+            </div>
+            <div class="uk-card uk-card-default uk-card-body">
+                <h4 class="uk-text-center">アンケート回答</h4>
+            </div>
+            <div class="uk-card uk-card-default uk-card-body">
+                <h4 class="uk-text-center">参加履歴</h4>
+            </div>
         </div>
+        <div class="uk-background-muted uk-margin-large uk-card uk-card-default uk-card-body"></div>
     </body>
 </html>
