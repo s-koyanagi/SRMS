@@ -18,20 +18,20 @@
                 <div class="uk-width-1-1@m">
                     <div class="uk-margin uk-width-large uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
                         <h3 class="uk-card-title uk-text-center">アカウント作成</h3>
-                        <form method="POST" th:action="@{/index/login}" th:object="${loginForm}">
+                        <form method="POST" th:action="@{/index/login}" th:object="${signUpForm}">
                             <div th:text="${errorMessage}?: ''" class="uk-text-danger"></div>
 
                             <div class="uk-margin">
                                 <p th:if="${#fields.hasErrors('*{esqId}')}" th:errors="*{esqId}" class="uk-text-danger"></p>
                                 <div class="uk-inline uk-width-1-1">
-                                    <input class="uk-input uk-form-large uk-text-small" id="user-id" th:field="*{esqId}" type="text" placeholder="ESQ ID">
+                                    <input class="uk-input uk-form-large uk-text-small" id="esqId" th:field="*{esqId}" type="text" placeholder="ESQ ID">
                                 </div>
                             </div>
 
                             <div class="uk-flex uk-flex-center">
                                 <p th:if="${#fields.hasErrors('*{password}')}" th:errors="*{password}" class="uk-text-danger"></p>
-                                <input class="uk-input uk-form-large uk-text-small" id="password" th:field="*{password}" type="password" placeholder="First Name">
-                                <input class="uk-input uk-form-large uk-text-small uk-margin-left" id="password" th:field="*{password}" type="password" placeholder="Last Name">
+                                <input class="uk-input uk-form-large uk-text-small" id="firstName" th:field="*{firstName}" type="text" placeholder="First Name">
+                                <input class="uk-input uk-form-large uk-text-small uk-margin-left" id="lastName" th:field="*{lastName}" type="text" placeholder="Last Name">
                             </div>
 
                             <div class="uk-margin">
@@ -43,9 +43,6 @@
     
                             <div class="uk-margin">
                                 <button type="submit" class="uk-button uk-button-primary uk-button-large uk-width-1-1">SIGNUP</button>
-                            </div>
-                            <div class="uk-text-small uk-text-center">
-                                アカウントがわからない? <a href="#">小柳に聞いてね</a>
                             </div>
                         </form>
                     </div>
