@@ -2,6 +2,7 @@ package com.example.srms.domain.dao;
 
 import com.example.srms.domain.entity.User;
 import org.seasar.doma.Dao;
+import org.seasar.doma.Insert;
 import org.seasar.doma.Select;
 import org.seasar.doma.boot.ConfigAutowireable;
 
@@ -11,4 +12,7 @@ public interface UserDao {
 
     @Select
     public User selectByUserId(String esqId);
+
+    @Insert(sqlFile = true)
+    public int insertUser(User user);
 }
