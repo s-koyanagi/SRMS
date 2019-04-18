@@ -10,6 +10,6 @@ public class UserInfoDto {
     private String esqId;
     private String firstName;
     private String lastName;
-    private String name;
+    private String fullName;
     private String password;
 }
