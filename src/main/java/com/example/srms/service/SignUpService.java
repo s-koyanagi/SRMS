@@ -5,7 +5,9 @@ import com.example.srms.domain.dto.UserInfoDto;
 import com.example.srms.domain.entity.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SignUpService {
 
     @Autowired
