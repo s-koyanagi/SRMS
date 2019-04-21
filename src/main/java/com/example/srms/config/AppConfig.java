@@ -8,6 +8,7 @@ import org.modelmapper.PropertyMap;
 import org.modelmapper.spi.MappingContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 public class AppConfig {
@@ -28,5 +29,10 @@ public class AppConfig {
             }
         });
         return mapper;
+    }
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }
