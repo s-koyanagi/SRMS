@@ -1,10 +1,11 @@
 package com.example.srms.service;
 
 import com.example.srms.domain.dao.UserDao;
-import com.example.srms.domain.dto.UserInfoDto;
+import com.example.srms.domain.dto.SignUpInfoDto;
 import com.example.srms.domain.entity.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,12 +17,23 @@ public class SignUpService {
     @Autowired
     UserDao userDao;
 
-    public int userRegistration(UserInfoDto userInfoDto){
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    private static final String MASK_PASSWORD = "*****";
+    private static final int SUCCESSFUL_REGISTER=1;
+    private static final int FAILURE_REGISTER=0;
+
+    public SignUpInfoDto userRegistration(SignUpInfoDto signUpInfoDto){
         User user = new User();
-
-        //***Passwordハッシュ化ロジック追加***
-
-        user = modelMapper.map(userInfoDto,user.getClass());
-        return userDao.insertUser(user);
+        signUpInfoDto.setMaskPassword(signUpInfoDto.getPassword().substring(0,3)+MASK_PASSWORD);
+        signUpInfoDto.setPassword(bCryptPasswordEncoder.encode(signUpInfoDto.getPassword()));
+        user = modelMapper.map(signUpInfoDto,user.getClass());
+        if(userDao.insertUser(user)==0){
+            signUpInfoDto.setIsRegister(FAILURE_REGISTER);
+            return signUpInfoDto;
+        }
+        signUpInfoDto.setIsRegister(SUCCESSFUL_REGISTER);
+        return signUpInfoDto;
     }
 }
