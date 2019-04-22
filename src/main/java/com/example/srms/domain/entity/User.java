@@ -2,6 +2,7 @@ package com.example.srms.domain.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.seasar.doma.Column;
 import org.seasar.doma.Entity;
 import org.seasar.doma.Id;
 import org.seasar.doma.Table;
@@ -17,8 +18,11 @@ import java.util.Collection;
 public class User implements UserDetails {
 
     @Id
-    private String esq_id;
-    private String name;
+    @Column(name = "ESQ_ID")
+    private String esqId;
+    @Column(name="NAME")
+    private String fullName;
+    @Column(name="PASSWORD")
     private String password;
 
     @Override
@@ -28,7 +32,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return name;
+        return fullName;
     }
 
     @Override
