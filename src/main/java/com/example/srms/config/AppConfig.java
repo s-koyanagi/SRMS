@@ -1,6 +1,6 @@
 package com.example.srms.config;
 
-import com.example.srms.domain.dto.UserInfoDto;
+import com.example.srms.domain.dto.SignUpInfoDto;
 import com.example.srms.web.form.SignUpForm;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
@@ -17,7 +17,7 @@ public class AppConfig {
     public ModelMapper modelMapper(){
         ModelMapper mapper = new ModelMapper();
         // FirstNameとLastNameを結合してFullNameにマッピングする設定
-        mapper.addMappings(new PropertyMap<SignUpForm, UserInfoDto>() {
+        mapper.addMappings(new PropertyMap<SignUpForm, SignUpInfoDto>() {
             @Override
             protected void configure() {
                 using(new Converter<SignUpForm, String>(){

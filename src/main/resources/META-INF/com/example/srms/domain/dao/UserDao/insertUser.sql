@@ -1,8 +1,9 @@
 INSERT INTO
-users (esq_id, name, created_at)
+users (esq_id, name, password,created_at)
 SELECT
-/* user.esq_id */'lk9999',
-/* user.name*/'山田 太郎'
+/* user.esqId */'lk9999',
+/* user.fullName */'山田 太郎',
+/* user.password */'password',
 current_timestamp
 FROM
 dual
@@ -14,5 +15,5 @@ esq_id
 FROM
 users
 WHERE
-esq_id = /* user.esq_id */1
+esq_id = /* user.esqId */1
 )
