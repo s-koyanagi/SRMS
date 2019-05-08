@@ -12,41 +12,21 @@
 </head>
 <body>
         <div class="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade" uk-height-viewport>
-                <div class="uk-width-1-1">
-                    <div class="uk-container">
-                        <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid>
-                            <div class="uk-width-1-1@m">
-                                <div class="uk-margin uk-width-large uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
-                                    <h3 class="uk-card-title uk-text-center">参加申込</h3>
-                                    <div class="uk-text-small uk-text-center">
-                                            メールアドレスと氏名を入力してください
-                                    </div>
-                                    <form method="POST" th:action="@{/entry/work}" th:object="${entryForm}">
-                                        <div th:text="${errorMessage}?: ''" class="uk-text-danger"></div>
-                                        <div class="uk-margin">
-                                            <p th:if="${#fields.hasErrors('*{mail_address}')}" th:errors="*{mail_address}" class="uk-text-danger"></p>
-                                            <div class="uk-inline uk-width-1-1">
-                                                <span class="uk-form-icon" uk-icon="icon: mail"></span>
-                                                <input class="uk-input uk-form-large uk-text-small" th:field="*{mail_address}" type="email" placeholder="Email">
-                                            </div>
-                                        </div>
-                                        <div class="uk-margin">
-                                            <p th:if="${#fields.hasErrors('*{name}')}" th:errors="*{name}" class="uk-text-danger"></p>
-                                            <div class="uk-inline uk-width-1-1">
-                                                <span class="uk-form-icon" uk-icon="icon: user"></span>
-                                                <input class="uk-input uk-form-large uk-text-small" th:field="*{name}" type="text" placeholder="Name">	
-                                            </div>
-                                        </div>
-                                        <input type="hidden" name="seminar_id" th:value="${seminar_id}" />
-                                        <div class="uk-margin">
-                                            <button type="submit" class="uk-button uk-button-primary uk-button-large uk-width-1-1">申し込む</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+            <div class="uk-width-1-1">
+                <div th:object="${seminar}" class="uk-margin uk-width-1-2 uk-margin-auto uk-card uk-card-large uk-card-default uk-card-body uk-box-shadow-large">
+                        <div class="uk-card-header">
+                            <h3 th:text="*{title}" class="uk-card-title">第99回開発技術セミナー 〜SpringBootで作ったよ特集〜</h3>
+                            <p class="uk-align-left">[日時] 2019/12/15 18:00</p>
+                            <p class="uk-align-left">[場所] 3階 ホール3</p>
                         </div>
-                    </div>
+                        <div th:text="*{overview}" class="uk-card-body">
+                                今年1発目となる第17回 開発技術セミナーの開催日程が決まりましたので、ご案内いたします！！<br><br>今回テーマを決めるにあたり、<br><br>ロシア出張の報告もしたいし、、、<br>機械学習を活用した実証実験も絶対おもしろいし、、、<br>実案件でのブロックチェーンの話も興味深いし、、、<br><br>という感じで、お届けしたい(おもしろい)内容がたくさんありまして、<br>悩んだ結果、もう今回は特別に3テーマをぎゅっと盛り込みます！！<br><br>ITエンジニアとしては、興味を惹く内容ばかりだと思いますので、<br>是非足を運んでいただけると幸いです。
+                        </div>
+                        <div class="uk-card-footer">
+                            <button th:href="@{'/entry'}" class="uk-align-center uk-button uk-button-primary uk-button-large">参加する</button>
+                        </div>
                 </div>
             </div>
+        </div>
 </body>
 </html>
