@@ -1,8 +1,10 @@
 package com.example.srms.web.controller;
 
 import com.example.srms.domain.dto.GuestInfoDto;
+import com.example.srms.domain.dto.SeminarInfoDto;
 import com.example.srms.service.EntryService;
 import com.example.srms.service.SeminarService;
+import com.example.srms.service.SpeakerService;
 import com.example.srms.web.form.EntryForm;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class EntryController {
     SeminarService seminarService;
 
     @Autowired
+    SpeakerService speakerService;
+
+    @Autowired
     EntryService entryService;
 
     @Autowired
@@ -34,7 +39,9 @@ public class EntryController {
 
     @RequestMapping(value="", method = RequestMethod.GET)
     public ModelAndView index(ModelAndView mv){
-        mv.addObject("seminar_id",seminarService.findAcceptingSeminar().getSeminar_id());
+        SeminarInfoDto seminarInfoDto = seminarService.findAcceptingSeminar();
+        mv.addObject("seminarInfo",seminarService.findAcceptingSeminar());
+        mv.addObject("speakerInfo",speakerService.findSpeaker(seminarInfoDto.getSeminarId()));
         mv.setViewName("entry/index");
         return mv;
     }
