@@ -9,12 +9,12 @@ import java.util.Date;
 @Getter
 public class GuestInfoDto {
 
-    private int seminar_id;
+    private int seminarId;
     private String name;
-    private String mail_address;
-    private Date created_at;
-    private Date updated_at;
-    private Date deleted_at;
+    private String mailAddress;
+    private Date createdTime;
+    private Date updatedTime;
+    private Date deletedTime;
     private Integer version;
 
 }

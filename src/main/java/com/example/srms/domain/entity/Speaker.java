@@ -14,16 +14,26 @@ public class Speaker {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int speaker_id;
-    private int seminar_id;
+    @Column(name = "speaker_id")
+    private int speakerId;
+    @Column(name="seminar_id")
+    private int seminarId;
+    @Column(name="name")
     private String name;
+    @Column(name="theme")
     private String theme;
-    private Date started_at;
-    private Date closed_at;
-    private Date created_at;
-    private Date updated_at;
-    private Date deleted_at;
+    @Column(name="started_at")
+    private Date startedTime;
+    @Column(name="closed_at")
+    private Date closedTime;
+    @Column(name="created_at")
+    private Date createdDateTime;
+    @Column(name="updated_at")
+    private Date updatedDateTime;
+    @Column(name="deleted_at")
+    private Date deletedDateTime;
     @Version
+    @Column(name="version")
     private Integer version;
 
 }
