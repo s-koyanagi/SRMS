@@ -6,6 +6,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SpeakerService {
 
@@ -14,9 +16,8 @@ public class SpeakerService {
     @Autowired
     SpeakerDao speakerDao;
 
-    public SpeakerInfoDto findSpeaker(int seminarId){
-        SpeakerInfoDto speakerInfoDto = new SpeakerInfoDto();
-        speakerInfoDto = modelMapper.map(speakerDao.selectBySeminarId(seminarId),speakerInfoDto.getClass());
-        return speakerInfoDto;
+    public SpeakerInfoDto[] findSpeaker(int seminarId){
+        SpeakerInfoDto[] speakers = modelMapper.map(speakerDao.selectBySeminarId(seminarId),SpeakerInfoDto[].class);
+        return speakers;
     }
 }
