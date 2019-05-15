@@ -41,12 +41,15 @@
                                     </tbody>
                                 </table>
                         </div>
-    
+                        
                         <div class="uk-card-footer">
                             <h3 class="uk-card-title">参加申込</h3>
-                            事前質問
-                            <input class="uk-margin-small uk-input" type="text" placeholder="事前に質問しておきたいこと">
-                            <button th:href="@{'/entry'}" class="uk-align-center uk-button uk-button-primary uk-button-large">参加する</button>
+                            <form method="POST" th:action="@{/entry/work}">
+                                事前質問
+                                <input class="uk-margin-small uk-input" type="text" placeholder="事前に質問しておきたいこと" th:field="${entryForm.priorQuestion}">
+                                <input type="hidden" name="seminarId" th:value="${seminarInfo.seminarId}"/>
+                                <button type="submit" class="uk-align-center uk-button uk-button-primary uk-button-large">参加する</button>
+                            </form>
                         </div>
                 </div>
             </div>
