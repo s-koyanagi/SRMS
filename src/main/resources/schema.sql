@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS guests(
     guest_id identity NOT NULL,
     seminar_id integer NOT NULL REFERENCES seminars (seminar_id),
     esq_id varchar(6) NOT NULL REFERENCES users (esq_id),
+    prior_question Text ,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP,
     deleted_at TIMESTAMP,
