@@ -18,8 +18,7 @@ public class EntryService {
 
 
     public int newEntry(GuestInfoDto guestInfoDto){
-        Guest guest = new Guest();
-        guest = modelMapper.map(guestInfoDto, guest.getClass());
+        Guest guest = modelMapper.map(guestInfoDto, Guest.class);
         return entryDao.insert(guest);
     }
 
