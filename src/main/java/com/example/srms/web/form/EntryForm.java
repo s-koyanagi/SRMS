@@ -11,9 +11,7 @@ import javax.validation.constraints.NotEmpty;
 public class EntryForm {
 
     @NotEmpty
-    private String seminar_id;
-    @NotEmpty
-    private String mail_address;
-    @NotEmpty
-    private String name;
+    private String seminarId;
+    private String priorQuestion;
+
 }
