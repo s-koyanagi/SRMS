@@ -56,7 +56,7 @@ public class EntryController {
             return mv;
         }
         mv.addObject("entryContents", guestInfoDto);
-        mv.setViewName("redirect:/entry");
+        mv.setViewName("redirect:/mypage");
         return mv;
     }
 

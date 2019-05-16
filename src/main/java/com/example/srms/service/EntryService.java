@@ -7,6 +7,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.Null;
+
 @Service
 public class EntryService {
 
@@ -20,6 +22,14 @@ public class EntryService {
     public int newEntry(GuestInfoDto guestInfoDto){
         Guest guest = modelMapper.map(guestInfoDto, Guest.class);
         return entryDao.insert(guest);
+    }
+
+    public boolean isAlreadyEntry(GuestInfoDto guestInfoDto){
+        Guest guest = modelMapper.map(guestInfoDto,Guest.class);
+        if(entryDao.selectById(guest)==null){
+            return false;
+        }
+        return true;
     }
 
 }
