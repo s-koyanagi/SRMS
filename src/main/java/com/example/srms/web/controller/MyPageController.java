@@ -5,11 +5,14 @@ import com.example.srms.domain.dto.SeminarInfoDto;
 import com.example.srms.domain.entity.User;
 import com.example.srms.service.EntryService;
 import com.example.srms.service.SeminarService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -22,6 +25,9 @@ public class MyPageController {
     @Autowired
     EntryService entryService;
 
+    @Autowired
+    ModelMapper modelMapper;
+
     @RequestMapping(value = {""}, method = RequestMethod.GET)
     public ModelAndView index(ModelAndView mv, @AuthenticationPrincipal User userDetails) {
         GuestInfoDto guestInfoDto = new GuestInfoDto();
@@ -32,4 +38,10 @@ public class MyPageController {
         return mv;
     }
 
+    @CrossOrigin
+    @ResponseBody
+    @RequestMapping(value={"/getseminar"}, method=RequestMethod.GET)
+    public SeminarInfoDto testJson(){
+        return seminarService.findAcceptingSeminar();
+    }
 }
