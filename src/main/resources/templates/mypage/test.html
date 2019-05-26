@@ -11,6 +11,7 @@
         <script src="../../static/js/uikit-icons.min.js" th:src="@{/js/uikit-icons.min.js}"></script>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="../../static/js/modal.js" th:src="@{/js/modal.js}"></script>
     </head>
     <body>
         <nav class="uk-navbar-container uk-margin" uk-navbar>
@@ -47,8 +48,8 @@
             </div>
         </div>
 
-        <div id="app" class="uk-flex uk-flex-center">
-            <a v-on:click="modalOn" class="uk-card uk-card-default uk-card-hover uk-card-body">
+        <div class="uk-flex uk-flex-center">
+            <a onclick="entryModal()" class="uk-card uk-card-default uk-card-hover uk-card-body">
                 <div class="uk-container" uk-icon="icon: sign-out; ratio: 3.0"></div>
                 <h4 class="uk-text-center">参加申込</h4>
             </a>
@@ -61,42 +62,8 @@
                 <h4 class="uk-text-center">参加履歴</h4>
             </a>
         </div>
-        
-        <script>
-            const app = new Vue({
-                el:'#app',
-                data:{
-                    isTest: true,
-                    seminarInfo:[]
-                },
-                methods:{
-                    modalOn: function() {
-                        axios
-                            .get("http://localhost:8080/srms/mypage/getseminar")
-                            .then(response => {
-                                const element =  '<div uk-modal>'+
-                                                    '<div class="uk-modal-dialog">'+
-                                                        '<button class="uk-modal-close-default" type="button" uk-close></button>'+
-                                                        '<div class="uk-modal-header">'+
-                                                            '<h4>'+response.data.title+'</h4>'+
-                                                        '</div>'+
-                                                        '<div class="uk-modal-body">'+
-                                                            '<p>'+response.data.overview+'</p>'+
-                                                        '</div>'+
-                                                        '<div class="uk-modal-footer uk-text-right">'+
-                                                            '<button class="uk-button uk-button-primary" type="button">申し込む</button>'+
-                                                            '<button class="uk-button uk-button-danger" type="button">申込取消</button>'+
-                                                        '</div>'+
-                                                    '</div>'+
-                                                '</div>'
-                                UIkit.modal(element).show();})
-
-                            .catch(error => {
-                                UIkit.modal.alert('取得失敗!')
-                            });
-                    }
-                }
-            })
-        </script>
+        <div id="contents">
+            <modal-tempolate></modal-tempolate>
+        </div>
     </body>
 </html>

@@ -2,9 +2,11 @@ package com.example.srms.web.controller;
 
 import com.example.srms.domain.dto.GuestInfoDto;
 import com.example.srms.domain.dto.SeminarInfoDto;
+import com.example.srms.domain.dto.SpeakerInfoDto;
 import com.example.srms.domain.entity.User;
 import com.example.srms.service.EntryService;
 import com.example.srms.service.SeminarService;
+import com.example.srms.service.SpeakerService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -14,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/mypage")
@@ -28,6 +33,9 @@ public class MyPageController {
     @Autowired
     ModelMapper modelMapper;
 
+    @Autowired
+    SpeakerService speakerService;
+
     @RequestMapping(value = {""}, method = RequestMethod.GET)
     public ModelAndView index(ModelAndView mv, @AuthenticationPrincipal User userDetails) {
         GuestInfoDto guestInfoDto = new GuestInfoDto();
@@ -41,7 +49,11 @@ public class MyPageController {
     @CrossOrigin
     @ResponseBody
     @RequestMapping(value={"/getseminar"}, method=RequestMethod.GET)
-    public SeminarInfoDto testJson(){
-        return seminarService.findAcceptingSeminar();
+    public Map<String, Object> testJson(){
+        Map<String, Object> entryStatus= new HashMap<String, Object>();
+        SeminarInfoDto seminarInfoDto = seminarService.findAcceptingSeminar();
+        entryStatus.put("seminar", seminarInfoDto);
+        entryStatus.put("speakers",speakerService.findSpeaker(seminarInfoDto.getSeminarId()));
+        return entryStatus;
     }
 }
