@@ -10,7 +10,8 @@
         <script src="../../static/js/uikit.min.js" th:src="@{/js/uikit.min.js}"></script>
         <script src="../../static/js/uikit-icons.min.js" th:src="@{/js/uikit-icons.min.js}"></script>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="../../static/js/modal.js" th:src="@{/js/modal.js}"></script>
+
     </head>
     <body>
         <nav class="uk-navbar-container uk-margin" uk-navbar>
@@ -48,7 +49,7 @@
         </div>
 
         <div th:if="${isAlreadyEntry}" class="uk-flex uk-flex-center">
-            <a href="#modal-sections" class="uk-card uk-card-default uk-card-hover uk-card-body" uk-toggle>
+            <a onclick="entryModal()" class="uk-card uk-card-default uk-card-hover uk-card-body" uk-toggle>
                 <div class="uk-container" uk-icon="icon: sign-out; ratio: 3.0"></div>
                 <h4 class="uk-text-center">参加取消</h4>
             </a>
@@ -63,7 +64,7 @@
         </div>
 
         <div th:unless="${isAlreadyEntry}" class="uk-flex uk-flex-center">
-            <a th:href="@{'/entry'}" class="uk-card uk-card-default uk-card-hover uk-card-body">
+            <a onclick="entryModal()" class="uk-card uk-card-default uk-card-hover uk-card-body">
                 <div class="uk-container" uk-icon="icon: sign-in; ratio: 3.0"></div>
                 <h4 class="uk-text-center">参加申込</h4>
             </a>
@@ -76,27 +77,5 @@
                 <h4 class="uk-text-center">参加履歴</h4>
             </a>
         </div>
-
-        <div id="modal-sections" uk-modal>
-            <div class="uk-modal-dialog">
-                <button class="uk-modal-close-default" type="button" uk-close></button>
-                <div class="uk-modal-header">
-                    <h2 class="uk-modal-title">Modal Title</h2>
-                </div>
-                <div class="uk-modal-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
-                <div class="uk-modal-footer uk-text-right">
-                    <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-                    <button class="uk-button uk-button-primary" type="button">Save</button>
-                </div>
-            </div>
-        </div>
-        
-        <script>
-            axios
-                .get("http://localhost:8080/srms/mypage/getseminar")
-                .then(response => {console.log(response)})
-        </script>
     </body>
 </html>

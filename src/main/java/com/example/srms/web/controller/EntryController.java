@@ -12,9 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
@@ -59,5 +57,21 @@ public class EntryController {
         mv.setViewName("redirect:/mypage");
         return mv;
     }
+
+    @CrossOrigin
+    @RequestMapping(value="/ajaxwork", method=RequestMethod.POST)
+    public ModelAndView ajaxRegistration(ModelAndView mv, @RequestPart ("jsonValue") EntryForm entryform, @AuthenticationPrincipal User userDetails){
+        GuestInfoDto guestInfoDto = modelMapper.map(entryform, GuestInfoDto.class);
+        guestInfoDto.setEsqId(userDetails.getEsqId());
+        if(entryService.newEntry(guestInfoDto)==0){
+            mv.addObject("errorMessage","入力内容は既に申込済です");
+            mv.setViewName("entry/index");
+            return mv;
+        }
+        mv.addObject("entryContents", guestInfoDto);
+        mv.setViewName("redirect:/mypage");
+        return mv;
+    }
+
 
 }

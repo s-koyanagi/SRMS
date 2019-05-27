@@ -2,12 +2,10 @@ package com.example.srms.web.controller;
 
 import com.example.srms.domain.dto.GuestInfoDto;
 import com.example.srms.domain.dto.SeminarInfoDto;
-import com.example.srms.domain.dto.SpeakerInfoDto;
 import com.example.srms.domain.entity.User;
 import com.example.srms.service.EntryService;
 import com.example.srms.service.SeminarService;
 import com.example.srms.service.SpeakerService;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -31,9 +29,6 @@ public class MyPageController {
     EntryService entryService;
 
     @Autowired
-    ModelMapper modelMapper;
-
-    @Autowired
     SpeakerService speakerService;
 
     @RequestMapping(value = {""}, method = RequestMethod.GET)
@@ -49,11 +44,17 @@ public class MyPageController {
     @CrossOrigin
     @ResponseBody
     @RequestMapping(value={"/getseminar"}, method=RequestMethod.GET)
-    public Map<String, Object> testJson(){
-        Map<String, Object> entryStatus= new HashMap<String, Object>();
-        SeminarInfoDto seminarInfoDto = seminarService.findAcceptingSeminar();
-        entryStatus.put("seminar", seminarInfoDto);
-        entryStatus.put("speakers",speakerService.findSpeaker(seminarInfoDto.getSeminarId()));
+    public Map<String, Object> testJson(@AuthenticationPrincipal User userDetails){
+        Map<String, Object> entryStatus = new HashMap<String, Object>();
+        SeminarInfoDto acceptingSeminar = seminarService.findAcceptingSeminar();
+
+        GuestInfoDto guestInfoDto = new GuestInfoDto();
+        guestInfoDto.setSeminarId(acceptingSeminar.getSeminarId());
+        guestInfoDto.setEsqId(userDetails.getEsqId());
+
+        entryStatus.put("seminar", acceptingSeminar);
+        entryStatus.put("speakers",speakerService.findSpeaker(acceptingSeminar.getSeminarId()));
+        entryStatus.put("isEntered",entryService.isAlreadyEntry(guestInfoDto));
         return entryStatus;
     }
 }
