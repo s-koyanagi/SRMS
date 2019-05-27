@@ -40,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/index","/signup/**").permitAll() // 全ユーザ公開
                 .anyRequest()
                 .authenticated()
-                .and().csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());;
+                .and().csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
         // ログイン設定
         http.formLogin()
                 .loginProcessingUrl("/index/login")
