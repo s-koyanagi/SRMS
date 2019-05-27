@@ -9,7 +9,5 @@ VALUES('第99回 開発技術セミナー 〜SpringBoot特集〜',
        1,
        1);
 INSERT INTO speakers(seminar_id,name,theme,started_at,closed_at,created_at)
-VALUES(1,'香川 真司','はじめに','18:00:00','18:05:00',current_timestamp)
-,(1,'大久保 嘉人','SpringBootとバイタルエリアの攻防','18:05:00','18:35:00',current_timestamp)
+VALUES(1,'大久保 嘉人','SpringBootとバイタルエリアの攻防','18:05:00','18:35:00',current_timestamp)
 ,(1,'パウロ ディバラ','Vue.jsで鍛えるプレースキック精度','18:35:00','19:05:00',current_timestamp)
-,(1,'香川 真司','おわりに','19:05:00','19:10:00',current_timestamp);
