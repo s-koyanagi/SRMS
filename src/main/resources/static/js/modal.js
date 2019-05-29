@@ -25,7 +25,7 @@ function entryModal(){
 
             const element =  '<div uk-modal>'+
                                 '<div class="uk-modal-dialog">'+
-                                    '<button class="uk-modal-close-default" type="button" uk-close></button>'+
+                                    '<button id="modal-close" class="uk-modal-close-default" type="button" uk-close></button>'+
                                     '<div class="uk-modal-header">'+
                                         '<h4>'+response.data.seminar.title+'</h4>'+
                                     '</div>'+
@@ -67,5 +67,12 @@ function entrySubmit(){
     formData.append('jsonValue', new Blob([JSON.stringify(guestInfo)], {type : 'application/json'}))
 
     axios.post('http://localhost:8080/srms/entry/ajaxwork', formData)
+         .then(response => {
+            document.getElementById("modal-close").click();
+            UIkit.notification("<span uk-icon='icon: check'></span> 申し込みが完了しました",{status:'success'});
+         })
+         .catch(error =>{
+             UIkit.modal().hide();
+         });
 
 }
