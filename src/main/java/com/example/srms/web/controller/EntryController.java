@@ -59,18 +59,15 @@ public class EntryController {
     }
 
     @CrossOrigin
+    @ResponseBody
     @RequestMapping(value="/ajaxwork", method=RequestMethod.POST)
-    public ModelAndView ajaxRegistration(ModelAndView mv, @RequestPart ("jsonValue") EntryForm entryform, @AuthenticationPrincipal User userDetails){
+    public boolean ajaxRegistration(@RequestPart ("jsonValue") EntryForm entryform, @AuthenticationPrincipal User userDetails){
         GuestInfoDto guestInfoDto = modelMapper.map(entryform, GuestInfoDto.class);
         guestInfoDto.setEsqId(userDetails.getEsqId());
         if(entryService.newEntry(guestInfoDto)==0){
-            mv.addObject("errorMessage","入力内容は既に申込済です");
-            mv.setViewName("entry/index");
-            return mv;
+            return false;
         }
-        mv.addObject("entryContents", guestInfoDto);
-        mv.setViewName("redirect:/mypage");
-        return mv;
+        return true;
     }
 
 

@@ -45,16 +45,16 @@ public class MyPageController {
     @ResponseBody
     @RequestMapping(value={"/getseminar"}, method=RequestMethod.GET)
     public Map<String, Object> testJson(@AuthenticationPrincipal User userDetails){
-        Map<String, Object> entryStatus = new HashMap<String, Object>();
+        Map<String, Object> entryInfo = new HashMap<String, Object>();
         SeminarInfoDto acceptingSeminar = seminarService.findAcceptingSeminar();
 
         GuestInfoDto guestInfoDto = new GuestInfoDto();
         guestInfoDto.setSeminarId(acceptingSeminar.getSeminarId());
         guestInfoDto.setEsqId(userDetails.getEsqId());
 
-        entryStatus.put("seminar", acceptingSeminar);
-        entryStatus.put("speakers",speakerService.findSpeaker(acceptingSeminar.getSeminarId()));
-        entryStatus.put("isEntered",entryService.isAlreadyEntry(guestInfoDto));
-        return entryStatus;
+        entryInfo.put("seminar", acceptingSeminar);
+        entryInfo.put("speakers",speakerService.findSpeaker(acceptingSeminar.getSeminarId()));
+        entryInfo.put("isEntered",entryService.isAlreadyEntry(guestInfoDto));
+        return entryInfo;
     }
 }
