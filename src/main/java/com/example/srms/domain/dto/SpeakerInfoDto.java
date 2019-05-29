@@ -3,6 +3,7 @@ package com.example.srms.domain.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Time;
 import java.util.Date;
 
 @Getter
@@ -13,8 +14,8 @@ public class SpeakerInfoDto {
     private int seminarId;
     private String name;
     private String theme;
-    private Date startedTime;
-    private Date closedTime;
+    private Time startedTime;
+    private Time closedTime;
     private Date createdDateTime;
     private Date updatedDateTime;
     private Date deletedDateTime;

@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.seasar.doma.*;
 
+import java.sql.Time;
 import java.util.Date;
 
 @Setter
@@ -23,9 +24,9 @@ public class Speaker {
     @Column(name="theme")
     private String theme;
     @Column(name="started_at")
-    private Date startedTime;
+    private Time startedTime;
     @Column(name="closed_at")
-    private Date closedTime;
+    private Time closedTime;
     @Column(name="created_at")
     private Date createdDateTime;
     @Column(name="updated_at")
