@@ -70,5 +70,18 @@ public class EntryController {
         return true;
     }
 
+    @CrossOrigin
+    @ResponseBody
+    @RequestMapping(value="/cancel", method = RequestMethod.POST)
+    public boolean ajaxCancel(@AuthenticationPrincipal User userDetails){
+        GuestInfoDto guestInfoDto = new GuestInfoDto();
+        guestInfoDto.setEsqId(userDetails.getEsqId());
+        guestInfoDto.setSeminarId(seminarService.findAcceptingSeminar().getSeminarId());
+        if(entryService.cancelEntry(guestInfoDto)==0){
+            return false;
+        }
+        return true;
+    }
+
 
 }

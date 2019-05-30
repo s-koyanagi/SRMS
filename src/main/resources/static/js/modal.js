@@ -1,4 +1,10 @@
 function entryModal(){
+    if(document.querySelector(".uk-modal")){
+        document.getElementById("modal-close").remove();
+    }
+    if(document.getElementById("entryForm") != null){
+        document.getElementById("entryForm").remove();
+    }
     axios
         .get("http://localhost:8080/srms/mypage/getseminar")
         .then(response => {
@@ -14,10 +20,11 @@ function entryModal(){
             }
 
             if(response.data.isEntered){
-                button_element = '<button class="uk-button uk-button-danger" type="button">申込取消</button>';
+                button_element = '<div class="uk-text-warning uk-text-center uk-margin-bottom">既に参加申込済みです</div>'+
+                                 '<button onclick="cancelSubmit()" class="uk-button uk-button-danger uk-margin-bottom" type="button">申込取消</button>';
             } else {
                 button_element = '<form id="entryForm" method="POST" enctype="multipart/form-data">'+
-                                    '<input id="question" class="uk-margin-small uk-input" type="text" placeholder="事前に質問しておきたいこと">'+
+                                    '<input id="question" class="uk-margin-small uk-input" type="text"   placeholder="事前に質問しておきたいこと">'+
                                     '<input type="hidden" id="seminarId" value='+response.data.seminar.seminarId +'>'+
                                     '<button onclick="entrySubmit()" class="uk-button uk-button-primary" type="button">申し込む</button>'+
                                  '</form>';
@@ -69,10 +76,28 @@ function entrySubmit(){
     axios.post('http://localhost:8080/srms/entry/ajaxwork', formData)
          .then(response => {
             document.getElementById("modal-close").click();
-            UIkit.notification("<span uk-icon='icon: check'></span> 申し込みが完了しました",{status:'success'});
+            UIkit.notification("<span uk-icon='icon: check; ratio: 1.5'></span> 参加申込を受け付けました",{status:'success'});
          })
          .catch(error =>{
              UIkit.modal().hide();
          });
 
+}
+
+function cancelSubmit(){
+    
+    axios.post('http://localhost:8080/srms/entry/cancel')
+         .then(response => {
+            document.getElementById("modal-close").click();
+            UIkit.notification("<span uk-icon='icon: check; ratio: 1.5'></span> 参加申込を取り消しました",{status:'warning'});
+         })
+         .catch(error =>{
+             UIkit.modal().hide();
+         });
+
+}
+
+
+function notification(){
+    UIkit.notification("<span uk-icon='icon: check; ratio: 1.5'></span> Test",{status:'warning'});
 }

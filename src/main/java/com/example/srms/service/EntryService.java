@@ -32,4 +32,9 @@ public class EntryService {
         return true;
     }
 
+    public int cancelEntry(GuestInfoDto guestInfoDto){
+        Guest guest = modelMapper.map(guestInfoDto,Guest.class);
+        return entryDao.updateById(guest);
+    }
+
 }
