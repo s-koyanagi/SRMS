@@ -7,9 +7,12 @@ import org.seasar.doma.Entity;
 import org.seasar.doma.Id;
 import org.seasar.doma.Table;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
+
 
 @Setter
 @Getter
@@ -18,16 +21,21 @@ import java.util.Collection;
 public class User implements UserDetails {
 
     @Id
-    @Column(name = "ESQ_ID")
+    @Column(name = "esq_id")
     private String esqId;
-    @Column(name="NAME")
+    @Column(name="name")
     private String fullName;
-    @Column(name="PASSWORD")
+    @Column(name="password")
     private String password;
+    @Column(name = "role")
+    private String role;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        Collection<GrantedAuthority> authorityList = new ArrayList<>();
+        authorityList.add(new SimpleGrantedAuthority(this.role));
+        return authorityList;
     }
 
     @Override

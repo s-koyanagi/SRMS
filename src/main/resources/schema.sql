@@ -2,6 +2,7 @@ CREATE TABLE IF NOT EXISTS users(
     esq_id varchar(6) NOT NULL,
     name TEXT NOT NULL,
     password TEXT NOT NULL,
+    role TEXT NOT NULL,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP ,
     deleted_at TIMESTAMP ,
