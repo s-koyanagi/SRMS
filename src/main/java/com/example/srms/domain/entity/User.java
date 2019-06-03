@@ -10,6 +10,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -29,7 +30,12 @@ public class User implements UserDetails {
     private String password;
     @Column(name = "role")
     private String role;
-
+    @Column(name = "created_at")
+    private Timestamp createdAt;
+    @Column(name = "updated_at")
+    private Timestamp updatedAt;
+    @Column(name = "deleted_at")
+    private Timestamp deleted_at;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
