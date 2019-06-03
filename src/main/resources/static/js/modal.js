@@ -76,7 +76,7 @@ function entrySubmit(){
     axios.post('http://localhost:8080/srms/entry/ajaxwork', formData)
          .then(response => {
             document.getElementById("modal-close").click();
-            UIkit.notification("<span uk-icon='icon: check; ratio: 1.5'></span> 参加申込を受け付けました",{status:'success'});
+            UIkit.notification("<span uk-icon='icon: check; ratio: 1.5'></span> 参加申込を受け付けました",{status:'success',timeout: 1500});
          })
          .catch(error =>{
              UIkit.modal().hide();
@@ -89,7 +89,7 @@ function cancelSubmit(){
     axios.post('http://localhost:8080/srms/entry/cancel')
          .then(response => {
             document.getElementById("modal-close").click();
-            UIkit.notification("<span uk-icon='icon: check; ratio: 1.5'></span> 参加申込を取り消しました",{status:'warning'});
+            UIkit.notification("<span uk-icon='icon: check; ratio: 1.5'></span> 参加申込を取り消しました",{status:'warning',timeout: 1500});
          })
          .catch(error =>{
              UIkit.modal().hide();
@@ -99,5 +99,5 @@ function cancelSubmit(){
 
 
 function notification(){
-    UIkit.notification("<span uk-icon='icon: check; ratio: 1.5'></span> Test",{status:'warning'});
+    UIkit.notification("<span uk-icon='icon: check; ratio: 1.5'></span> Test",{status:'warning',timeout: 1500});
 }
