@@ -4,48 +4,59 @@
         xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout"
         layout:decorator="layout"
 >
-<head>
-    <title>ログイン</title>
-    <link rel="stylesheet" href="../../static/css/uikit.min.css" th:href="@{/css/uikit.min.css}">
-    <script src="../../static/js/uikit.min.js" th:src="@{/js/uikit.min.js}"></script>
-    <script src="../../static/js/uikit-icons.min.js" th:src="@{/js/uikit-icons.min.js}"></script>
-</head>
-<body>
-        <div class="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade" uk-height-viewport>
-                <div class="uk-width-1-1">
-                    <div class="uk-container">
-                        <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid>
-                            <div class="uk-width-1-1@m">
-                                <div class="uk-margin uk-width-large uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
-                                    <h3 class="uk-card-title uk-text-center">Welcome back!</h3>
-                                    <form method="POST" action="/admin/login/" th:action="@{/admin/login}" th:object="${indexForm}">
-                                        <div th:text="${errorMessage}?: ''" class="uk-text-danger"></div>
-                                        <div class="uk-margin">
-                                            <p th:if="${#fields.hasErrors('*{userId}')}" th:errors="*{userId}" class="uk-text-danger"></p>
-                                            <div class="uk-inline uk-width-1-1">
-                                                <span class="uk-form-icon" uk-icon="icon: mail"></span>
-                                                <input class="uk-input uk-form-large uk-text-small" id="user-id" th:field="*{userId}" type="text">
-                                            </div>
-                                        </div>
-                                        <div class="uk-margin">
-                                            <p th:if="${#fields.hasErrors('*{password}')}" th:errors="*{password}" class="uk-text-danger"></p>
-                                            <div class="uk-inline uk-width-1-1">
-                                                <span class="uk-form-icon" uk-icon="icon: lock"></span>
-                                                <input class="uk-input uk-form-large uk-text-small" id="password" th:field="*{password}" type="password">	
-                                            </div>
-                                        </div>
-                                        <div class="uk-margin">
-                                            <button type="submit" class="uk-button uk-button-primary uk-button-large uk-width-1-1">Login</button>
-                                        </div>
-                                        <div class="uk-text-small uk-text-center">
-                                            アカウントがわからない? <a href="#">小柳に聞いてね</a>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <head>
+        <title>MyPage</title>
+        <link rel="stylesheet" href="../../static/css/uikit.min.css" th:href="@{/css/uikit.min.css}">
+        <script src="../../static/js/uikit.min.js" th:src="@{/js/uikit.min.js}"></script>
+        <script src="../../static/js/uikit-icons.min.js" th:src="@{/js/uikit-icons.min.js}"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="../../static/js/modal.js" th:src="@{/js/modal.js}"></script>
+
+    </head>
+    <body style="background:#f9f9f9">
+        <nav class="uk-navbar-container uk-margin" style="background:#8a8a8a" uk-navbar>
+            <div class="uk-navbar-left">
+        
+                <a class="uk-navbar-item uk-logo" href="#" style="color: #f5f5f5">INTERTECH SEMINAR</a>
+            </div>      　　　　　
+            <div class="uk-navbar-right">
+                <div class="uk-navbar-item">
+                        <div style="color: #f5f5f5">小柳 匠平さん</div>
                 </div>
+
+                <div class="uk-navbar-item">
+                    <a href="" style="color: #f5f5f5">ログアウト</a>
+                </div>
+            </div>           
+        </nav>
+    
+        <div class="uk-flex uk-flex-center">
+            <div class="uk-card uk-card-default uk-card-small uk-card-hover uk-card-body">
+                <h3 class="uk-card-title">参加者総数</h3>
             </div>
-</body>
+            <a onclick="notification()" class="uk-card uk-card-default uk-card-hover uk-card-body uk-margin-left">
+                <div class="uk-container" uk-icon="icon: pencil; ratio: 3.0"></div>
+                <h4 class="uk-text-center">アンケート回答</h4>
+            </a>
+            <a class="uk-card uk-card-default uk-card-hover uk-card-body uk-margin-left">
+                <span class="uk-container" uk-icon="icon: history; ratio: 3.0"></span>
+                <h4 class="uk-text-center">参加履歴</h4>
+            </a>
+        </div>
+
+        <div class="uk-flex uk-flex-center uk-margin">
+            <a onclick="entryModal()" class="uk-card uk-card-default uk-card-hover uk-card-body">
+                <div class="uk-container" uk-icon="icon: check; ratio: 3.0"></div>
+                <h4 class="uk-text-center">参加申込</h4>
+            </a>
+            <a onclick="notification()" class="uk-card uk-card-default uk-card-hover uk-card-body uk-margin-left">
+                <div class="uk-container" uk-icon="icon: pencil; ratio: 3.0"></div>
+                <h4 class="uk-text-center">アンケート回答</h4>
+            </a>
+            <a class="uk-card uk-card-default uk-card-hover uk-card-body uk-margin-left">
+                <span class="uk-container" uk-icon="icon: history; ratio: 3.0"></span>
+                <h4 class="uk-text-center">参加履歴</h4>
+            </a>
+        </div>
+    </body>
 </html>
