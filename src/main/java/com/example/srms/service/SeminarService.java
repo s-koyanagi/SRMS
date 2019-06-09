@@ -17,8 +17,7 @@ public class SeminarService {
     private final static int ACCEPTING_SEMINAR=1;
 
     public SeminarInfoDto findAcceptingSeminar(){
-        SeminarInfoDto seminarInfoDto = new SeminarInfoDto();
-        seminarInfoDto = modelMapper.map(seminarDao.selectByAcceptingFlag(ACCEPTING_SEMINAR),seminarInfoDto.getClass());
+        SeminarInfoDto seminarInfoDto = modelMapper.map(seminarDao.selectByAcceptingFlag(ACCEPTING_SEMINAR),SeminarInfoDto.class);
         return seminarInfoDto;
     }
 
