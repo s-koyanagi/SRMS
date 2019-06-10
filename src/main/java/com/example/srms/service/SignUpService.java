@@ -1,7 +1,7 @@
 package com.example.srms.service;
 
 import com.example.srms.domain.dao.UserDao;
-import com.example.srms.domain.dto.SignUpInfoDto;
+import com.example.srms.domain.dto.SignUpDTO;
 import com.example.srms.domain.entity.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,16 +25,16 @@ public class SignUpService {
     private static final int FAILURE_REGISTER=0;
     private static final int NO_INSERT_RESULT=0;
 
-    public SignUpInfoDto userRegistration(SignUpInfoDto signUpInfoDto){
+    public SignUpDTO userRegistration(SignUpDTO signUpDto){
         User user = new User();
-        signUpInfoDto.setMaskPassword(signUpInfoDto.getPassword().substring(0,3)+MASK_PASSWORD);
-        signUpInfoDto.setPassword(bCryptPasswordEncoder.encode(signUpInfoDto.getPassword()));
-        user = modelMapper.map(signUpInfoDto,user.getClass());
+        signUpDto.setMaskPassword(signUpDto.getPassword().substring(0,3)+MASK_PASSWORD);
+        signUpDto.setPassword(bCryptPasswordEncoder.encode(signUpDto.getPassword()));
+        user = modelMapper.map(signUpDto,user.getClass());
         if(userDao.insertUser(user)==NO_INSERT_RESULT){
-            signUpInfoDto.setIsRegister(FAILURE_REGISTER);
-            return signUpInfoDto;
+            signUpDto.setIsRegister(FAILURE_REGISTER);
+            return signUpDto;
         }
-        signUpInfoDto.setIsRegister(SUCCESSFUL_REGISTER);
-        return signUpInfoDto;
+        signUpDto.setIsRegister(SUCCESSFUL_REGISTER);
+        return signUpDto;
     }
 }

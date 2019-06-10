@@ -1,7 +1,7 @@
 package com.example.srms.service;
 
 import com.example.srms.domain.dao.GuestDao;
-import com.example.srms.domain.dto.GuestInfoDto;
+import com.example.srms.domain.dto.GuestDTO;
 import com.example.srms.domain.entity.Guest;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,21 +17,21 @@ public class EntryService {
     ModelMapper modelMapper;
 
 
-    public int newEntry(GuestInfoDto guestInfoDto){
-        Guest guest = modelMapper.map(guestInfoDto, Guest.class);
+    public int newEntry(GuestDTO guestDto){
+        Guest guest = modelMapper.map(guestDto, Guest.class);
         return guestDao.insert(guest);
     }
 
-    public boolean isAlreadyEntry(GuestInfoDto guestInfoDto){
-        Guest guest = modelMapper.map(guestInfoDto,Guest.class);
+    public boolean isAlreadyEntry(GuestDTO guestDto){
+        Guest guest = modelMapper.map(guestDto,Guest.class);
         if(guestDao.selectById(guest)==null){
             return false;
         }
         return true;
     }
 
-    public int cancelEntry(GuestInfoDto guestInfoDto){
-        Guest guest = modelMapper.map(guestInfoDto,Guest.class);
+    public int cancelEntry(GuestDTO guestDto){
+        Guest guest = modelMapper.map(guestDto,Guest.class);
         return guestDao.updateById(guest);
     }
 

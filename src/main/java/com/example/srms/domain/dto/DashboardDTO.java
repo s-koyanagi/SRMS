@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class DashboardDto {
+public class DashboardDTO {
 
     private int numberOfGuest;
     private int numberOfTotalGuest;

@@ -1,7 +1,7 @@
 package com.example.srms.web.controller;
 
-import com.example.srms.domain.dto.GuestInfoDto;
-import com.example.srms.domain.dto.SeminarInfoDto;
+import com.example.srms.domain.dto.GuestDTO;
+import com.example.srms.domain.dto.SeminarDTO;
 import com.example.srms.domain.entity.User;
 import com.example.srms.service.EntryService;
 import com.example.srms.service.SeminarService;
@@ -33,10 +33,10 @@ public class MyPageController {
 
     @RequestMapping(value = {""}, method = RequestMethod.GET)
     public ModelAndView index(ModelAndView mv, @AuthenticationPrincipal User userDetails) {
-        GuestInfoDto guestInfoDto = new GuestInfoDto();
-        guestInfoDto.setSeminarId(seminarService.findAcceptingSeminar().getSeminarId());
-        guestInfoDto.setEsqId(userDetails.getEsqId());
-        mv.addObject("isAlreadyEntry",entryService.isAlreadyEntry(guestInfoDto));
+        GuestDTO guestDto = new GuestDTO();
+        guestDto.setSeminarId(seminarService.findAcceptingSeminar().getSeminarId());
+        guestDto.setEsqId(userDetails.getEsqId());
+        mv.addObject("isAlreadyEntry",entryService.isAlreadyEntry(guestDto));
         mv.setViewName("mypage/index");
         return mv;
     }
@@ -46,15 +46,15 @@ public class MyPageController {
     @RequestMapping(value={"/getseminar"}, method=RequestMethod.GET)
     public Map<String, Object> testJson(@AuthenticationPrincipal User userDetails){
         Map<String, Object> entryInfo = new HashMap<String, Object>();
-        SeminarInfoDto acceptingSeminar = seminarService.findAcceptingSeminar();
+        SeminarDTO acceptingSeminar = seminarService.findAcceptingSeminar();
 
-        GuestInfoDto guestInfoDto = new GuestInfoDto();
-        guestInfoDto.setSeminarId(acceptingSeminar.getSeminarId());
-        guestInfoDto.setEsqId(userDetails.getEsqId());
+        GuestDTO guestDto = new GuestDTO();
+        guestDto.setSeminarId(acceptingSeminar.getSeminarId());
+        guestDto.setEsqId(userDetails.getEsqId());
 
         entryInfo.put("seminar", acceptingSeminar);
         entryInfo.put("speakers",speakerService.findSpeaker(acceptingSeminar.getSeminarId()));
-        entryInfo.put("isEntered",entryService.isAlreadyEntry(guestInfoDto));
+        entryInfo.put("isEntered",entryService.isAlreadyEntry(guestDto));
         return entryInfo;
     }
 }

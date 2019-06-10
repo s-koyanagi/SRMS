@@ -1,7 +1,7 @@
 package com.example.srms.service;
 
 import com.example.srms.domain.dao.SeminarDao;
-import com.example.srms.domain.dto.SeminarInfoDto;
+import com.example.srms.domain.dto.SeminarDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,9 +16,9 @@ public class SeminarService {
 
     private final static int ACCEPTING_SEMINAR=1;
 
-    public SeminarInfoDto findAcceptingSeminar(){
-        SeminarInfoDto seminarInfoDto = modelMapper.map(seminarDao.selectByAcceptingFlag(ACCEPTING_SEMINAR),SeminarInfoDto.class);
-        return seminarInfoDto;
+    public SeminarDTO findAcceptingSeminar(){
+        SeminarDTO seminarDto = modelMapper.map(seminarDao.selectByAcceptingFlag(ACCEPTING_SEMINAR), SeminarDTO.class);
+        return seminarDto;
     }
 
 }

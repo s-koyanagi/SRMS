@@ -5,20 +5,18 @@ import lombok.Setter;
 
 import java.util.Date;
 
-@Getter
 @Setter
-public class SeminarInfoDto {
+@Getter
+public class GuestDTO {
 
+    private int guestId;
     private int seminarId;
-    private String title;
-    private String overview;
-    private Date startedTime;
-    private Date closedTime;
+    private String esqId;
+    private String name;
+    private String priorQuestion;
     private Date createdDateTime;
     private Date updatedDateTime;
     private Date deletedDateTime;
-    private int acceptingFlag;
     private Integer version;
 
 }
-

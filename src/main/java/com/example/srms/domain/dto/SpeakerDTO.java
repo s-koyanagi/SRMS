@@ -3,17 +3,19 @@ package com.example.srms.domain.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Time;
 import java.util.Date;
 
-@Setter
 @Getter
-public class GuestInfoDto {
+@Setter
+public class SpeakerDTO {
 
-    private int guestId;
+    private int speakerId;
     private int seminarId;
-    private String esqId;
     private String name;
-    private String priorQuestion;
+    private String theme;
+    private Time startedTime;
+    private Time closedTime;
     private Date createdDateTime;
     private Date updatedDateTime;
     private Date deletedDateTime;
