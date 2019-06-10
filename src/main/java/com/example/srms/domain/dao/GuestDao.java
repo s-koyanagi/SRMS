@@ -1,5 +1,6 @@
 package com.example.srms.domain.dao;
 
+import com.example.srms.domain.dto.GuestDTO;
 import com.example.srms.domain.entity.Guest;
 import org.seasar.doma.Dao;
 import org.seasar.doma.Insert;
@@ -12,11 +13,11 @@ import org.seasar.doma.boot.ConfigAutowireable;
 public interface GuestDao {
 
     @Insert(sqlFile = true)
-    int insert(Guest guest);
+    int insert(GuestDTO guest);
 
     @Select
-    Guest selectById(Guest guest);
+    Guest selectById(GuestDTO guest);
 
     @Update(sqlFile = true)
-    int updateById(Guest guest);
+    int updateById(GuestDTO guest);
 }
