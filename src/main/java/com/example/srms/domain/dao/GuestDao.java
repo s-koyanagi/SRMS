@@ -9,7 +9,7 @@ import org.seasar.doma.boot.ConfigAutowireable;
 
 @Dao
 @ConfigAutowireable
-public interface EntryDao {
+public interface GuestDao {
 
     @Insert(sqlFile = true)
     int insert(Guest guest);

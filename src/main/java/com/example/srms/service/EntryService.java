@@ -1,19 +1,17 @@
 package com.example.srms.service;
 
-import com.example.srms.domain.dao.EntryDao;
+import com.example.srms.domain.dao.GuestDao;
 import com.example.srms.domain.dto.GuestInfoDto;
 import com.example.srms.domain.entity.Guest;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.validation.constraints.Null;
-
 @Service
 public class EntryService {
 
     @Autowired
-    EntryDao entryDao;
+    GuestDao guestDao;
 
     @Autowired
     ModelMapper modelMapper;
@@ -21,12 +19,12 @@ public class EntryService {
 
     public int newEntry(GuestInfoDto guestInfoDto){
         Guest guest = modelMapper.map(guestInfoDto, Guest.class);
-        return entryDao.insert(guest);
+        return guestDao.insert(guest);
     }
 
     public boolean isAlreadyEntry(GuestInfoDto guestInfoDto){
         Guest guest = modelMapper.map(guestInfoDto,Guest.class);
-        if(entryDao.selectById(guest)==null){
+        if(guestDao.selectById(guest)==null){
             return false;
         }
         return true;
@@ -34,7 +32,7 @@ public class EntryService {
 
     public int cancelEntry(GuestInfoDto guestInfoDto){
         Guest guest = modelMapper.map(guestInfoDto,Guest.class);
-        return entryDao.updateById(guest);
+        return guestDao.updateById(guest);
     }
 
 }
