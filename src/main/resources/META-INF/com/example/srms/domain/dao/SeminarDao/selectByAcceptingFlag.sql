@@ -3,4 +3,4 @@ SELECT
 FROM
     seminars
 WHERE
-    accepting_flag=/*acceptingFlag*/''
+    accepting_flag='1'
