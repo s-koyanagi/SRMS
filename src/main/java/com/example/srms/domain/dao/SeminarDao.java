@@ -15,5 +15,6 @@ public interface SeminarDao {
     Seminar selectByAcceptingFlag();
 
     @Select
-    List<Seminar> selectAllSeminar();
+    List<Seminar> selectAllSeminarAndGuestInfo();
+
 }

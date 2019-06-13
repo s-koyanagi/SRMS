@@ -20,5 +20,7 @@ public class SeminarDTO {
     private int acceptingFlag;
     private Integer version;
 
+    private int numberOfGuest;
+
 }
 

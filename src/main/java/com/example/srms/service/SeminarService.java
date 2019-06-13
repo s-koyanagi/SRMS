@@ -14,10 +14,8 @@ public class SeminarService {
     @Autowired
     ModelMapper modelMapper;
 
-    private final static int ACCEPTING_SEMINAR=1;
-
     public SeminarDTO findAcceptingSeminar(){
-        SeminarDTO seminarDto = modelMapper.map(seminarDao.selectByAcceptingFlag(ACCEPTING_SEMINAR), SeminarDTO.class);
+        SeminarDTO seminarDto = modelMapper.map(seminarDao.selectByAcceptingFlag(), SeminarDTO.class);
         return seminarDto;
     }
 

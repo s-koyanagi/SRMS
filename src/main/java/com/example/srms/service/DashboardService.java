@@ -10,9 +10,9 @@ import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
+import java.util.Map;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,32 +28,37 @@ public class DashboardService {
     public DashboardDTO getAnalyticsData(){
         DashboardDTO dashboardDTO = new DashboardDTO();
         final int ACCEPTING_FLAG = 1;
-        List <SeminarDTO> seminarDTOList = modelMapper.map(seminarDao.selectAllSeminar(), new TypeToken<List<SeminarDTO>>() {}.getType());
-        List<GuestDTO> guestDTOList = modelMapper.map(guestDao.selectAllGuest(), new TypeToken<List<GuestDTO>>() {}.getType());
-
-        Function <List<GuestDTO>, Integer> getNumberOfGuest= (i) -> {
-            List<SeminarDTO> acceptingSeminar = seminarDTOList.stream()
-                                                              .filter((seminar) -> seminar.getAcceptingFlag()==ACCEPTING_FLAG)
-                                                              .collect(Collectors.toList());
-
-            int numberOfGuest = (int)guestDTOList.stream()
-                                                 .filter((guest) -> guest.getSeminarId()==acceptingSeminar.get(0).getAcceptingFlag())
-                                                 .count();
-            return numberOfGuest;
-        };
-
-        Function <List<GuestDTO>, Integer> getNumberOfHigestGuest= (i) -> {
-            List<GuestDTO> highestGuestList = new ArrayList<>();
-
-            return highestGuestList.size();
-        };
+        final int TARGET_INDEX_NUMBER = 0;
+        List <SeminarDTO> seminarDTOList = modelMapper.map(seminarDao.selectAllSeminarAndGuestInfo(), new TypeToken<List<SeminarDTO>>() {}.getType());
+        List <GuestDTO> guestDTOList = modelMapper.map(guestDao.selectAllGuest(), new TypeToken<List<GuestDTO>>() {}.getType());
 
 
 
+//        Supplier<Integer> getNumberOfGuest= () -> {
+//            List<SeminarDTO> acceptingSeminar = seminarDTOList.stream()
+//                                                              .filter((seminar) -> seminar.getAcceptingFlag()==ACCEPTING_FLAG)
+//                                                              .collect(Collectors.toList());
+//
+//            int numberOfGuest = (int)guestDTOList.stream()
+//                                                 .filter((guest) -> guest.getSeminarId()==acceptingSeminar.get(TARGET_INDEX_NUMBER).getSeminarId())
+//                                                 .count();
+//            return numberOfGuest;
+//        };
+//
+//        Supplier <Integer> getNumberOfHigestGuest= () -> {
+//            Map.Entry<Integer, Long> highestSeminar = null;
+//            Map<Integer, Long> groupingGuest = guestDTOList.stream().collect(Collectors.groupingBy(GuestDTO::getSeminarId, Collectors.counting()));
+//            groupingGuest.forEach((key, value) -> { if(highestSeminar == null || value > highestSeminar.getValue()){
+//                                                        highestSeminar.set
+//                                                    }
+//                                                  });
+//
+//            return highestGuestList.size();
+//        };
 
-        dashboardDTO.setNumberOfGuest(getNumberOfGuest.apply(guestDTOList));
-        dashboardDTO.setNumberOfTotalGuest(guestDTOList.size());
-        //dashboardDTO.setNumberOfHighestGuest();
+
+
+
 
 
 
