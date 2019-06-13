@@ -1,7 +1,7 @@
 SELECT
 b.seminar_id
 ,b.title
-,b.overview TEXT
+,b.overview
 ,b.started_at
 ,b.closed_at
 ,b.created_at
@@ -22,7 +22,7 @@ a.deleted_at IS NULL
 GROUP BY
 b.seminar_id
 ,b.title
-,b.overview TEXT
+,b.overview
 ,b.started_at
 ,b.closed_at
 ,b.created_at
