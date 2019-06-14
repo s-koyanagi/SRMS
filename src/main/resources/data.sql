@@ -1,4 +1,4 @@
-INSERT INTO users(esq_id,name,password,role,created_at)
+INSERT INTO users(esq_id,name,role,password,created_at)
 VALUES('lk9999','山田 太郎','ADMIN','$2a$10$5ltUX/.ogJRHrbwn9hG2sOd8Y1krWn8mhYWbBnpCYSSjSCIoTdAke',current_timestamp)
 ,('lk8888','鈴木 一郎','USER','$2a$10$5ltUX/.ogJRHrbwn9hG2sOd8Y1krWn8mhYWbBnpCYSSjSCIoTdAke',current_timestamp)
 ,('lk4649','鈴木 一郎','USER','$2a$10$5ltUX/.ogJRHrbwn9hG2sOd8Y1krWn8mhYWbBnpCYSSjSCIoTdAke',current_timestamp)
