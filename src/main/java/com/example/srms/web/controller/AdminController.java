@@ -15,10 +15,12 @@ public class AdminController {
 
     @Autowired
     DashboardService dashboardService;
-    // View login page
+
     @RequestMapping(value={""}, method= RequestMethod.GET)
     public ModelAndView index(ModelAndView mv, @AuthenticationPrincipal User userDetails){
-        mv.addObject("values",dashboardService.getAnalyticsData());
+        mv.addObject("analyticsData",dashboardService.getAnalyticsData());
+        mv.addObject("userDetails",userDetails);
+        mv.setViewName("admin/index");
         return mv;
     }
 }
