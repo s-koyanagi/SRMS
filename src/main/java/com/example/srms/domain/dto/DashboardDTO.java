@@ -8,8 +8,11 @@ import lombok.Setter;
 public class DashboardDTO {
 
     private int numberOfGuest;
+    private String titleOfAcceptingSeminar;
     private int numberOfTotalGuest;
-    private int numberOfHighestGuest;
-    private int numberOfAverageGuest;
+    private int numberOfSeminar;
+    private int numberOfMaximumGuest;
+    private String titleOfMaximumGuest;
+    private double numberOfAverageGuest;
 
 }
