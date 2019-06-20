@@ -9,11 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.toList;
 
 @Service
 public class DashboardService {
@@ -24,28 +19,23 @@ public class DashboardService {
     ModelMapper modelMapper;
 
     final int ACCEPTING_FLAG = 1;
-    final int TARGET_INDEX_NUMBER = 0;
 
     public DashboardDTO getAnalyticsData(){
         DashboardDTO dashboardDTO = new DashboardDTO();
-
         List <SeminarDTO> seminarDTOList = modelMapper.map(seminarDao.selectAllSeminarAndGuestInfo(), new TypeToken<List<SeminarDTO>>() {}.getType());
 
-        Supplier<Integer> getAcceptingNumberOfGuest = () -> {
-            SeminarDTO acceptingSeminar = seminarDTOList.stream()
-                                                        .filter((seminar) -> seminar.getAcceptingFlag() == ACCEPTING_FLAG)
-                                                        .collect(Collectors.collectingAndThen(toList(), list -> list.get(TARGET_INDEX_NUMBER)));
-            return acceptingSeminar.getNumberOfGuest();
-        };
+        SeminarDTO maximumGuestSeminar  = seminarDTOList.stream()
+                .max((seminar1, seminar2) -> ((Integer)seminar1.getNumberOfGuest()).compareTo(seminar2.getNumberOfGuest())).get();
+        SeminarDTO acceptingSeminar = seminarDTOList.stream()
+                .filter((seminar) -> seminar.getAcceptingFlag() == ACCEPTING_FLAG).findFirst().get();
 
-        Supplier <Integer> getNumberOfHighestGuest = () -> {
-            Optional<SeminarDTO> numberOfHighestGuestSeminar = seminarDTOList.stream()
-                                                                            .max((seminar1, seminar2) -> ((Integer)seminar1.getNumberOfGuest()).compareTo(seminar2.getNumberOfGuest()));
-            return numberOfHighestGuestSeminar.get().getNumberOfGuest();
-        };
-
-        dashboardDTO.setNumberOfGuest(getAcceptingNumberOfGuest.get());
-        dashboardDTO.setNumberOfHighestGuest(getNumberOfHighestGuest.get());
+        dashboardDTO.setNumberOfTotalGuest(seminarDTOList.stream().mapToInt(seminar -> seminar.getNumberOfGuest()).sum());
+        dashboardDTO.setNumberOfGuest(acceptingSeminar.getNumberOfGuest());
+        dashboardDTO.setTitleOfAcceptingSeminar(acceptingSeminar.getTitle());
+        dashboardDTO.setNumberOfMaximumGuest(maximumGuestSeminar.getNumberOfGuest());
+        dashboardDTO.setTitleOfMaximumGuest(maximumGuestSeminar.getTitle());
+        dashboardDTO.setNumberOfAverageGuest(seminarDTOList.stream().mapToInt(seminar -> seminar.getNumberOfGuest()).average().getAsDouble());
+        dashboardDTO.setNumberOfSeminar(seminarDTOList.size());
 
         return dashboardDTO;
     }
