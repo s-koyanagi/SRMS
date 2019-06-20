@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS users(
     PRIMARY KEY(esq_id)
 );
 CREATE TABLE IF NOT EXISTS seminars(
-    seminar_id identity NOT NULL,
+    seminar_id SERIAL NOT NULL,
     title TEXT NOT NULL,
     overview TEXT NOT NULL,
     started_at TIMESTAMP NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS seminars(
     PRIMARY KEY(seminar_id)
 );
 CREATE TABLE IF NOT EXISTS guests(
-    guest_id identity NOT NULL,
+    guest_id SERIAL NOT NULL,
     seminar_id integer NOT NULL REFERENCES seminars (seminar_id),
     esq_id varchar(6) NOT NULL REFERENCES users (esq_id),
     prior_question Text ,
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS guests(
     PRIMARY KEY(guest_id)
 );
 CREATE TABLE IF NOT EXISTS speakers(
-    speaker_id identity NOT NULL,
+    speaker_id SERIAL NOT NULL,
     seminar_id integer NOT NULL REFERENCES seminars (seminar_id),
     name TEXT NOT NULL,
     theme TEXT NOT NULL,
