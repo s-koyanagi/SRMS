@@ -2,9 +2,13 @@ package com.example.srms.service;
 
 import com.example.srms.domain.dao.SeminarDao;
 import com.example.srms.domain.dto.SeminarDTO;
+import com.example.srms.domain.entity.Seminar;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class SeminarService {
@@ -15,8 +19,13 @@ public class SeminarService {
     ModelMapper modelMapper;
 
     public SeminarDTO findAcceptingSeminar(){
-        SeminarDTO seminarDto = modelMapper.map(seminarDao.selectByAcceptingFlag(), SeminarDTO.class);
-        return seminarDto;
+        SeminarDTO seminarDTO = modelMapper.map(seminarDao.selectByAcceptingFlag(), SeminarDTO.class);
+        return seminarDTO;
+    }
+
+    public List<SeminarDTO> getAllSeminarList(){
+        List<SeminarDTO> seminarDTOList = modelMapper.map(seminarDao.selectAllSeminarAndGuestInfo(), new TypeToken<List<SeminarDTO>>() {}.getType());
+        return seminarDTOList;
     }
 
 }
