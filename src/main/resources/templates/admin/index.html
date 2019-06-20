@@ -25,7 +25,7 @@
 							<a class="uk-logo" href="#"><img class="custom-logo" th:src="@{/img/dashboard-logo-white.svg}" src="/img/dashboard-logo-white.svg" alt=""></a>
 						</div>
 						<ul class="uk-navbar-nav uk-visible@m">
-							<li class="uk-margin-top"><h5>Administrator</h5></li>
+							<li class="uk-margin-top"><h5>Dashboard</h5></li>
 							<!-- <li>
 								<a href="#">Settings <span data-uk-icon="icon: triangle-down"></span></a>
 								<div class="uk-navbar-dropdown">
@@ -159,41 +159,29 @@
 						<span class="uk-text-small"><span data-uk-icon="icon:users" class="uk-margin-small-right uk-text-primary"></span>参加申込数</span>
 						<h1 class="uk-heading-primary uk-margin-remove  uk-text-primary" th:text="${analyticsData.numberOfGuest}">23</h1>
 						<div class="uk-text-small">
-							<span class="uk-text-success" data-uk-icon="icon: triangle-up">15%</span> more than last seminar
+							by <span th:text="${analyticsData.titleOfAcceptingSeminar}">第99回 開発技術セミナー</span>
 						</div>
+					</div>
+					<div>
+						
+						<span class="uk-text-small"><span data-uk-icon="icon:users" class="uk-margin-small-right uk-text-primary"></span>平均申込数</span>
+						<h1 class="uk-heading-primary uk-margin-remove uk-text-primary" th:text="${analyticsData.numberOfAverageGuest}">99.9</h1>						
 					</div>
 					<div>					
 						<span class="uk-text-small"><span data-uk-icon="icon:users" class="uk-margin-small-right uk-text-primary"></span>歴代最高申込数</span>
-						<h1 class="uk-heading-primary uk-margin-remove uk-text-primary" th:text="${analyticsData.numberOfHighestGuest}">51</h1>
+						<h1 class="uk-heading-primary uk-margin-remove uk-text-primary" th:text="${analyticsData.numberOfMaximumGuest}">99</h1>
 						<div class="uk-text-small">
-							by 第82回 開発技術セミナー
-						</div>
-						
+							by <span th:text="${analyticsData.titleOfMaximumGuest}">第99回 開発技術セミナー</span>
+						</div>	
 					</div>
 					<div>
 						
-						<span class="uk-text-small"><span data-uk-icon="icon:users" class="uk-margin-small-right uk-text-primary"></span>歴代総参加数</span>
-						<h1 class="uk-heading-primary uk-margin-remove uk-text-primary">214</h1>
+						<span class="uk-text-small"><span data-uk-icon="icon:users" class="uk-margin-small-right uk-text-primary"></span>総申込数</span>
+						<h1 class="uk-heading-primary uk-margin-remove uk-text-primary" th:text="${analyticsData.numberOfTotalGuest}">999</h1>
 						<div class="uk-text-small">
-							total 10 seminars
+							total <span th:text="${analyticsData.numberOfSeminar}">99</span> seminars
 						</div>
 						
-					</div>
-					<div>
-						
-						<span class="uk-text-small"><span data-uk-icon="icon:users" class="uk-margin-small-right uk-text-primary"></span>登録ユーザー数</span>
-						<h1 class="uk-heading-primary uk-margin-remove uk-text-primary">63</h1>
-						<!-- <div class="uk-text-small">
-							<span class="uk-text-danger" data-uk-icon="icon: triangle-down"> -23%</span> less than last week.
-						</div> -->
-						
-					</div>
-					<div class="uk-visible@xl">
-						<span class="uk-text-small"><span data-uk-icon="icon:users" class="uk-margin-small-right uk-text-primary"></span>Lorem ipsum</span>
-						<h1 class="uk-heading-primary uk-margin-remove uk-text-primary">5.284</h1>
-						<div class="uk-text-small">
-							<span class="uk-text-success" data-uk-icon="icon: triangle-up"> 7%</span> more than last week.
-						</div>
 					</div>
 				</div>
 				<hr>
