@@ -18,4 +18,7 @@ public interface SeminarDao {
     @Select
     List<SeminarGuest> selectAllSeminarAndGuestInfo();
 
+    @Select
+    Seminar selectBySeminarId(int seminarId);
+
 }

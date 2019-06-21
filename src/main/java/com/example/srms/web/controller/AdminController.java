@@ -1,13 +1,14 @@
 package com.example.srms.web.controller;
 
+import com.example.srms.domain.dto.SeminarDTO;
+import com.example.srms.domain.entity.Seminar;
 import com.example.srms.domain.entity.User;
 import com.example.srms.service.DashboardService;
 import com.example.srms.service.SeminarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -34,5 +35,13 @@ public class AdminController {
         mv.setViewName("admin/seminarList");
         mv.addObject("userDetails",userDetails);
         return mv;
+    }
+
+    @CrossOrigin
+    @ResponseBody
+    @RequestMapping(value={"/getseminar/{seminarId}"}, method = RequestMethod.GET)
+    public SeminarDTO getSeminarInfo(@PathVariable("seminarId") int seminarId){
+        SeminarDTO seminarDTO = seminarService.findSeminar(seminarId);
+        return seminarDTO;
     }
 }

@@ -28,4 +28,9 @@ public class SeminarService {
         return seminarDTOList;
     }
 
+    public SeminarDTO findSeminar(int seminarId){
+        SeminarDTO seminarDTO = modelMapper.map(seminarDao.selectBySeminarId(seminarId),SeminarDTO.class);
+        return seminarDTO;
+    }
+
 }
