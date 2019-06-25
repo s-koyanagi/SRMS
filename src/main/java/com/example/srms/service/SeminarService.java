@@ -8,7 +8,9 @@ import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SeminarService {
@@ -25,12 +27,7 @@ public class SeminarService {
 
     public List<SeminarDTO> getAllSeminarList(){
         List<SeminarDTO> seminarDTOList = modelMapper.map(seminarDao.selectAllSeminarAndGuestInfo(), new TypeToken<List<SeminarDTO>>() {}.getType());
-        return seminarDTOList;
-    }
-
-    public SeminarDTO findSeminar(int seminarId){
-        SeminarDTO seminarDTO = modelMapper.map(seminarDao.selectBySeminarId(seminarId),SeminarDTO.class);
-        return seminarDTO;
+        return seminarDTOList.stream().sorted(Comparator.comparingInt(SeminarDTO::getSeminarId).reversed()).collect(Collectors.toList());
     }
 
 }

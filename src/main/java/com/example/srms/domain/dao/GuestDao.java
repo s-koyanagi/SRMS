@@ -26,4 +26,7 @@ public interface GuestDao {
 
     @Select
     List<Guest> selectAllGuest();
+
+    @Select
+    List<Guest> selectGuestListBySeminarId(int seminarId);
 }
