@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html 
+    lang = "en"
+    xmlns = "http://www.w3.org/1999/xhtml"
+    xmlns:th = "http://www.thymeleaf.org"
+    xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator = "layout"
+>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>セミナー一覧 - INTERTECH SEMINAR</title>
+		<!-- CSS FILES -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/css/uikit.min.css" 
+                               th:href="@{https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/css/uikit.min.css}">
+		<link rel="stylesheet" href="../../static/css/dashboard.css" th:href="@{/css/dashboard.css}">
+		<link rel="stylesheet" href="../../static/css/custom.css" th:href="@{/css/custom.css}">
+	</head>
+	<body>
+
+		<!--HEADER-->
+		<header id="top-head" class="uk-position-fixed">
+			<div class="uk-container uk-container-expand uk-background-primary">
+				<nav class="uk-navbar uk-light" data-uk-navbar="mode:click; duration: 250">
+					<div class="uk-navbar-left">
+						<div class="uk-navbar-item uk-hidden@m">
+							<a class="uk-logo" href="#"><img class="custom-logo" th:src="@{/img/dashboard-logo-white.svg}" src="../../static/img/dashboard-logo-white.svg" alt=""></a>
+						</div>
+						<ul class="uk-navbar-nav uk-visible@m">
+							<li class="uk-margin-top"><h5>Seminar management</h5></li>
+						</ul>
+					</div>
+					<div class="uk-navbar-right">
+						<ul class="uk-navbar-nav">
+							<li><a href="#" data-uk-icon="icon: settings" title="Settings" data-uk-tooltip></a></li>
+							<li><a href="#" data-uk-icon="icon:  sign-out" title="Sign Out" data-uk-tooltip></a></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</header>
+		<!--/HEADER-->
+		<!-- LEFT BAR -->
+		<aside id="left-col" class="uk-light uk-visible@m">
+			<div class="left-logo uk-flex uk-flex-middle uk-text-center">
+				<div class="uk-margin-left">INTERTECH SEMINAR</div>
+			</div>
+			<div class="left-content-box  content-box-dark">
+				<img src="../../static/img/avatar.svg" th:src="@{/img/avatar.svg}" alt="" class="uk-border-circle profile-img">
+				<h4 class="uk-text-center uk-margin-remove-vertical text-light">小柳 匠平</h4>				
+				<div class="uk-position-relative uk-text-center uk-display-block">
+				    <div href="#" class="uk-text-small uk-text-muted uk-display-block uk-text-center">Admin</div>
+				</div>
+			</div>
+			
+			<div class="left-nav-wrap">
+				<ul class="uk-nav uk-nav-default uk-nav-parent-icon" data-uk-nav>
+					<li class="uk-nav-header">ADMIN ACTIONS</li>
+					<li><a href="#"><span data-uk-icon="icon: comments" class="uk-margin-small-right"></span>お知らせ</a></li>
+					<li><a href="#"><span data-uk-icon="icon: users" class="uk-margin-small-right"></span>アカウント</a></li>
+					<li><a href="#"><span data-uk-icon="icon: file-text" class="uk-margin-small-right"></span>セミナー</a></li>
+					<li><a href="#"><span data-uk-icon="icon: lifesaver" class="uk-margin-small-right"></span>Tips</a></li>
+				</ul>				
+			</div>
+			<div class="bar-bottom">
+				<ul class="uk-subnav uk-flex uk-flex-center uk-child-width-1-5" data-uk-grid>
+					<li>
+						<a href="#" class="uk-icon-link" data-uk-icon="icon: home" title="Home" data-uk-tooltip></a>
+					</li>
+					<li>
+						<a href="#" class="uk-icon-link" data-uk-icon="icon: settings" title="Settings" data-uk-tooltip></a>
+					</li>
+					<li>
+						<a href="#" class="uk-icon-link" data-uk-icon="icon: social"  title="Social" data-uk-tooltip></a>
+					</li>
+					
+					<li>
+						<a href="#" class="uk-icon-link" data-uk-tooltip="Sign out" data-uk-icon="icon: sign-out"></a>
+					</li>
+				</ul>
+			</div>
+		</aside>
+		<!-- /LEFT BAR -->
+		<!-- CONTENT -->
+		<div id="content" data-uk-height-viewport="expand: true">
+			<div class="uk-container uk-container-expand">
+				<div class="uk-grid uk-grid-medium" data-uk-grid>				
+					<!-- panel -->
+					<div class="uk-width-3-4@l">
+						<div class="uk-card uk-card-default uk-card-small">
+							<div class="uk-card-header">
+								<div class="uk-grid uk-grid-small">
+									<div class="uk-width-auto"><h4>Seminar details</h4></div>
+									<div class="uk-width-expand uk-text-right panel-icons">
+										<a href="#" class="uk-icon-link" title="Add seminar" data-uk-tooltip data-uk-icon="icon: plus"></a>
+									</div>
+								</div>
+							</div>
+							<div class="uk-card-body uk-width-1-1@l">
+                                <h4 class="uk-heading-divider">概要</h4>
+                                <form class="uk-form-horizontal uk-margin-large">
+                                    <div class="uk-margin-medium">
+                                        <label class="uk-form-label" for="form-horizontal-text">セミナー名</label>
+                                        <div class="uk-form-controls">
+                                            <input class="uk-input uk-form-width-large" id="form-horizontal-text" type="text" placeholder="Some text...">
+                                        </div>
+                                    </div>
+                                    <div class="uk-margin-medium">
+                                        <label class="uk-form-label" for="form-horizontal-text">開催日時</label>
+                                        <div class="uk-form-controls">
+                                            <input class="uk-input uk-form-width-small" id="form-horizontal-text" type="text" placeholder="yyyy/mm/dd">
+                                            <input class="uk-input uk-form-width-small uk-margin-left" id="form-horizontal-text" type="text" placeholder="hh:mm">
+                                        </div>
+                                    </div>
+                                    <div class="uk-margin-medium">
+                                        <label class="uk-form-label" for="form-horizontal-text">講演者・タイトル</label>
+                                        <div class="uk-form-controls">
+                                            <input class="uk-input uk-form-width-medium" id="form-horizontal-text" type="text" placeholder="Full name">
+                                            <input class="uk-input uk-form-width-large uk-margin-left" id="form-horizontal-text" type="text" placeholder="title">
+                                        </div>
+                                        <div class="uk-form-controls uk-margin-small">
+                                            <input class="uk-input uk-form-width-medium" id="form-horizontal-text" type="text" placeholder="Full name">
+                                            <input class="uk-input uk-form-width-large uk-margin-left" id="form-horizontal-text" type="text" placeholder="title">
+                                        </div>
+                                        <div id="addSpeakerSpace" class="uk-form-controls uk-margin-small">
+                                        </div>
+                                        <a onclick="addSpeaker()">講演者を追加</a>
+                                    </div>
+                                </form>
+                                <h4 class="uk-heading-divider">参加者一覧</h4>
+                                <table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
+                                    <thead>
+                                        <tr>
+                                            <th><input class="uk-checkbox" type="checkbox"></th>
+											<th>ESQ ID</th>
+											<th>NAME</th>
+											<th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="guest : ${guestList}">
+											<input type="hidden" name="guestId" th:value="${guest.guestId}" />
+                                            <td><input class="uk-checkbox" type="checkbox"></td>
+											<td th:text="${guest.esqId}">lk9999</td>
+											<td th:text="${guest.name}">阿部 新之助</td>
+                                            <td><a href="" class="uk-icon-link" uk-icon="trash"></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+						</div>
+                    </div>
+				</div>
+				<footer class="uk-section uk-section-small uk-text-center">
+					<!-- <hr>
+					<p class="uk-text-small uk-text-center">Copyright 2019 - <a href="https://github.com/zzseba78/Kick-Off">Created by KickOff</a> | Built with <a href="http://getuikit.com" title="Visit UIkit 3 site" target="_blank" data-uk-tooltip><span data-uk-icon="uikit"></span></a> </p> -->
+				</footer>
+			</div>
+		</div>
+		<!-- /CONTENT -->
+		<!-- OFFCANVAS -->
+		<div id="offcanvas-nav" data-uk-offcanvas="flip: true; overlay: true">
+			<div class="uk-offcanvas-bar uk-offcanvas-bar-animation uk-offcanvas-slide">
+				<button class="uk-offcanvas-close uk-close uk-icon" type="button" data-uk-close></button>
+				<ul class="uk-nav uk-nav-default">
+					<li class="uk-active"><a href="#">Active</a></li>
+					<li class="uk-parent">
+						<a href="#">Parent</a>
+						<ul class="uk-nav-sub">
+							<li><a href="#">Sub item</a></li>
+							<li><a href="#">Sub item</a></li>
+						</ul>
+					</li>
+					<li class="uk-nav-header">Header</li>
+					<li><a href="#js-options"><span class="uk-margin-small-right uk-icon" data-uk-icon="icon: table"></span> Item</a></li>
+					<li><a href="#"><span class="uk-margin-small-right uk-icon" data-uk-icon="icon: thumbnails"></span> Item</a></li>
+					<li class="uk-nav-divider"></li>
+					<li><a href="#"><span class="uk-margin-small-right uk-icon" data-uk-icon="icon: trash"></span> Item</a></li>
+				</ul>
+				<h3>Title</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+			</div>
+		</div>
+		<!-- /OFFCANVAS -->
+		
+		<!-- JS FILES -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit-icons.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+		<script src="../../static/js/chartScripts.js" th:src="@{/js/chartScripts.js}"></script>
+		<script src="../../static/js/seminar.js" th:src="@{/js/seminar.js}"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	</body>
+</html>
