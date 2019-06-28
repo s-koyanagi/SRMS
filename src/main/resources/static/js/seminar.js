@@ -11,9 +11,11 @@ function getSeminarInfo(seminarId){
 }
 
 function addSpeaker(){
-    let target = document.getElementById('addSpeakerSpace');
-    target.innerHTML = '<input class="uk-input uk-form-width-medium" id="form-horizontal-text" type="text" placeholder="Full name">'+
-                       '<input class="uk-input uk-form-width-large uk-margin-left" id="form-horizontal-text" type="text" placeholder="title">'+
-                       '<div id="addSpeakerSpace" class="uk-form-controls uk-margin-small">'+
-                       '</div>'
+    const target = document.getElementById('addSpeakerSpace');
+    let addElement = document.createElement("div");
+    addElement.setAttribute("class","uk-form-controls uk-margin-small")
+    addElement.innerHTML = '<input class="uk-input uk-form-width-medium" id="form-horizontal-text" type="text" placeholder="Full name">'+
+                           '<input class="uk-input uk-width-1-2@l uk-margin-left" id="form-horizontal-text" type="text" placeholder="title">'
+
+    target.appendChild(element)
 }
