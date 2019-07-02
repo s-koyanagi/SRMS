@@ -92,40 +92,31 @@
 								<div class="uk-grid uk-grid-small">
 									<div class="uk-width-auto"><h4>Seminar details</h4></div>
 									<div class="uk-width-expand uk-text-right panel-icons">
-										<a href="#" class="uk-icon-link" title="Add seminar" data-uk-tooltip data-uk-icon="icon: plus"></a>
+										<a href="#" class="uk-icon-link" title="Edit" data-uk-tooltip ratio=1.5 data-uk-icon="icon: pencil"></a>
+										<a href="#" class="uk-icon-link uk-margin-left" title="Delete" ratio=1.5 data-uk-tooltip data-uk-icon="icon: trash"></a>
 									</div>
 								</div>
 							</div>
 							<div class="uk-card-body uk-width-1-1@l">
-                                <h4 class="uk-heading-divider">概要</h4>
-                                <form class="uk-form-horizontal uk-margin-large">
-                                    <div class="uk-margin-medium">
-                                        <label class="uk-form-label" for="form-horizontal-text">セミナー名</label>
-                                        <div class="uk-form-controls">
-                                            <input class="uk-input uk-form-width-large" id="form-horizontal-text" type="text" placeholder="Some text...">
-                                        </div>
-                                    </div>
-                                    <div class="uk-margin-medium">
-                                        <label class="uk-form-label" for="form-horizontal-text">開催日時</label>
-                                        <div class="uk-form-controls">
-                                            <input class="uk-input uk-form-width-small" id="form-horizontal-text" type="text" placeholder="yyyy/mm/dd">
-                                            <input class="uk-input uk-form-width-small uk-margin-left" id="form-horizontal-text" type="text" placeholder="hh:mm">
-                                        </div>
-                                    </div>
-                                    <div class="uk-margin-medium" id="addSpeakerSpace">
-                                        <label class="uk-form-label" for="form-horizontal-text">講演者・タイトル</label>
-                                        <div class="uk-form-controls">
-                                            <input class="uk-input uk-form-width-medium" id="form-horizontal-text" type="text" placeholder="Full name">
-                                            <input class="uk-input uk-width-1-2@l uk-margin-left" id="form-horizontal-text" type="text" placeholder="title">
-                                        </div>
-                                        <div class="uk-form-controls uk-margin-small">
-                                            <input class="uk-input uk-form-width-medium" id="form-horizontal-text" type="text" placeholder="Full name">
-                                            <input class="uk-input uk-width-1-2@l uk-margin-left" id="form-horizontal-text" type="text" placeholder="title">
-                                        </div>
-									</div>
-									<a onclick="addSpeaker()">講演者を追加</a>
-                                </form>
-                                <h4 class="uk-heading-divider">参加者一覧</h4>
+								<h3 class="uk-heading-divider">概要</h3>
+									<dl class="uk-description-list">
+										<dt>[タイトル]</dt>
+										<dd th:text="${seminar.title}">第23回開発技術セミナー ~ほげほげほげほげ特集~</dd>
+										<dt>[開催日時]</dt>
+										<dd th:text="${seminar.dateTimeHeld}">2019年11月3日 18:30 ~ 20:00</dd>
+										<dt>[講演者・タイトル]</dt>
+										<dd>
+											<table class="uk-table uk-table-divider uk-text-small uk-width-3-4">
+												<tbody>
+													<tr th:each="speaker : ${speakerList}">
+														<td th:text="${speaker.name}">西野 五郎</td>
+														<td th:text="${speaker.theme}">GitFlowをやめて本番リリースが楽になった話</td>
+													</tr>
+												</tbody>
+											</table>
+										</dd>
+									</dl>                                
+								<h3 class="uk-heading-divider">参加者一覧</h3>
                                 <table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
                                     <thead>
                                         <tr>

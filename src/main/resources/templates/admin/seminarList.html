@@ -114,7 +114,7 @@
                                         <tr th:each="seminar : ${seminarList}">
 											<input type="hidden" name="seminarId" th:value="${seminar.seminarId}" />
                                             <td><input class="uk-checkbox" type="checkbox"></td>
-											<td><a th:text="${seminar.title}" th:attr="onclick='getSeminarInfo(' + ${seminar.seminarId} + ');'">第97回 開発技術セミナー</a></td>
+											<td><a th:text="${seminar.title}" th:href="@{'/admin/seminardetails/' + ${seminar.seminarId}}">第97回 開発技術セミナー</a></td>
 											<td th:text="${seminar.startedTime}">2018年10月10日 18:00:00</td>
 											<td th:text="${seminar.closedTime}">2018年10月10日 19:00:00</td>
 											<td th:text="${seminar.numberOfGuest}">10</td>
