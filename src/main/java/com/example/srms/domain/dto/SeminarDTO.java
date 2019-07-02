@@ -14,6 +14,7 @@ public class SeminarDTO {
     private String overview;
     private Date startedTime;
     private Date closedTime;
+    private String dateTimeHeld;
     private Date createdDateTime;
     private Date updatedDateTime;
     private Date deletedDateTime;
