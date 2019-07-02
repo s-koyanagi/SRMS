@@ -1,8 +1,8 @@
 package com.example.srms.domain.dao;
 
 import com.example.srms.domain.dto.GuestDTO;
-import com.example.srms.domain.dto.SeminarDTO;
 import com.example.srms.domain.entity.Guest;
+import com.example.srms.domain.entity.GuestUser;
 import org.seasar.doma.Dao;
 import org.seasar.doma.Insert;
 import org.seasar.doma.Select;
@@ -28,5 +28,5 @@ public interface GuestDao {
     List<Guest> selectAllGuest();
 
     @Select
-    List<Guest> selectGuestListBySeminarId(int seminarId);
+    List<GuestUser> selectGuestListBySeminarId(int seminarId);
 }
