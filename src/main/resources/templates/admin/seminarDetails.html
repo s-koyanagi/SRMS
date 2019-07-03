@@ -92,7 +92,7 @@
 								<div class="uk-grid uk-grid-small">
 									<div class="uk-width-auto"><h4>Seminar details</h4></div>
 									<div class="uk-width-expand uk-text-right panel-icons">
-										<a href="#" class="uk-icon-link" title="Edit" data-uk-tooltip ratio=1.5 data-uk-icon="icon: pencil"></a>
+										<a href="#" th:attr="onclick='editSeminar(' + ${seminar.seminarId} + ');'" class="uk-icon-link" title="Edit" data-uk-tooltip ratio=1.5 data-uk-icon="icon: pencil"></a>
 										<a href="#" class="uk-icon-link uk-margin-left" title="Delete" ratio=1.5 data-uk-tooltip data-uk-icon="icon: trash"></a>
 									</div>
 								</div>
@@ -177,7 +177,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit-icons.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 		<script src="../../static/js/chartScripts.js" th:src="@{/js/chartScripts.js}"></script>
-		<script src="../../static/js/seminar.js" th:src="@{/js/seminar.js}"></script>
+		<script src="../../static/js/modal.js" th:src="@{/js/modal.js}"></script>
 		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	</body>
 </html>
