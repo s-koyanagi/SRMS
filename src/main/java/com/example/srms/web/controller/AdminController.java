@@ -11,7 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/admin")
@@ -52,5 +53,14 @@ public class AdminController {
         mv.addObject("guestList", adminService.getGuestList(seminarId));
         mv.setViewName("admin/seminarDetails");
         return mv;
+    }
+
+    @CrossOrigin
+    @ResponseBody
+    @RequestMapping(value={"/gettargetseminar/{seminarId}"}, method= RequestMethod.GET)
+    public Map<String, Object> targetSeminar(@PathVariable("seminarId") int seminarId){
+        Map<String, Object> targetInfo = new HashMap<>();
+        targetInfo.put("seminar",adminService.getSeminarInfo(seminarId));
+        return targetInfo;
     }
 }
