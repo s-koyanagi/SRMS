@@ -47,7 +47,7 @@ public class AdminController {
     }
 
     @RequestMapping(value={"/seminardetails/{seminarId}"}, method = RequestMethod.GET)
-    public ModelAndView seminarDetails(ModelAndView mv, @PathVariable("seminarId") int seminarId){
+    public ModelAndView getSeminarDetails(ModelAndView mv, @PathVariable("seminarId") int seminarId){
         mv.addObject("seminar", adminService.getSeminarInfo(seminarId));
         mv.addObject("speakerList", speakerService.findSpeaker(seminarId));
         mv.addObject("guestList", adminService.getGuestList(seminarId));
@@ -57,10 +57,11 @@ public class AdminController {
 
     @CrossOrigin
     @ResponseBody
-    @RequestMapping(value={"/gettargetseminar/{seminarId}"}, method= RequestMethod.GET)
-    public Map<String, Object> targetSeminar(@PathVariable("seminarId") int seminarId){
-        Map<String, Object> targetInfo = new HashMap<>();
-        targetInfo.put("seminar",adminService.getSeminarInfo(seminarId));
-        return targetInfo;
+    @RequestMapping(value={"/editableseminar/{seminarId}"}, method= RequestMethod.GET)
+    public Map<String, Object> getEditableSeminar(@PathVariable("seminarId") int seminarId){
+        Map<String, Object> editableSeminar = new HashMap<>();
+        editableSeminar.put("seminar", adminService.getSeminarInfo(seminarId));
+        editableSeminar.put("speaker", speakerService.findSpeaker(seminarId));
+        return editableSeminar;
     }
 }
