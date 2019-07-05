@@ -110,7 +110,7 @@ function editSeminar(seminarId){
         document.getElementById("editSeminarForm").remove();
     }
     axios
-        .get("http://localhost:8080/srms/admin/gettargetseminar/"+seminarId)
+        .get("http://localhost:8080/srms/admin/editableseminar/"+seminarId)
         .then(response => {
 
             // let table_element　=　new String();
@@ -147,6 +147,14 @@ function editSeminar(seminarId){
                                                 '<label class="uk-form-label" for="form-horizontal-text">セミナー名</label>'+
                                                 '<div class="uk-form-controls">'+
                                                     '<input class="uk-input" id="seminarTitle" type="text" value="'+response.data.seminar.title+'">'+
+                                                '</div>'+
+                                                '<label class="uk-form-label" for="form-horizontal-text">開始時間</label>'+
+                                                '<div class="uk-form-controls">'+
+                                                    '<input class="uk-input" id="seminarTitle" type="text" value="'+response.data.seminar.startedTime+'">'+
+                                                '</div>'+
+                                                '<label class="uk-form-label" for="form-horizontal-text">終了時間</label>'+
+                                                '<div class="uk-form-controls">'+
+                                                    '<input class="uk-input" id="seminarTitle" type="text" value="'+response.data.seminar.closedTime+'">'+
                                                 '</div>'+
                                             '</div>'+
                                         '</form>'+

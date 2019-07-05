@@ -104,8 +104,7 @@
                                         <tr>
                                             <th><input class="uk-checkbox" type="checkbox"></th>
 											<th>Title</th>
-											<th>Start</th>
-											<th>Close</th>
+											<th>EVENT DATETIME</th>
 											<th>Number Of Guest</th>
                                             <th>Status</th>
                                         </tr>
@@ -115,8 +114,7 @@
 											<input type="hidden" name="seminarId" th:value="${seminar.seminarId}" />
                                             <td><input class="uk-checkbox" type="checkbox"></td>
 											<td><a th:text="${seminar.title}" th:href="@{'/admin/seminardetails/' + ${seminar.seminarId}}">第97回 開発技術セミナー</a></td>
-											<td th:text="${seminar.startedTime}">2018年10月10日 18:00:00</td>
-											<td th:text="${seminar.closedTime}">2018年10月10日 19:00:00</td>
+											<td th:text="${seminar.eventDate}+' '+${seminar.startedTime}+'～'+${seminar.startedTime}">2018年10月10日 18:00～19:00</td>
 											<td th:text="${seminar.numberOfGuest}">10</td>
                                             <div th:switch="${seminar.acceptingFlag}">
                                                 <td th:case="0"><span class="uk-label uk-label-danger">終　了</span></td>
