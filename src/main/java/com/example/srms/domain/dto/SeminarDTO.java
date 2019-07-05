@@ -12,9 +12,12 @@ public class SeminarDTO {
     private int seminarId;
     private String title;
     private String overview;
-    private Date startedTime;
-    private Date closedTime;
+
+    private String eventDate;
+    private String startedTime;
+    private String closedTime;
     private String dateTimeHeld;
+
     private Date createdDateTime;
     private Date updatedDateTime;
     private Date deletedDateTime;
