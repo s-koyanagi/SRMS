@@ -39,14 +39,27 @@ public class AppConfig {
                 using(new Converter<Seminar, String>(){
                     public String convert(MappingContext<Seminar, String> context) {
                         SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy年MM月dd日");
-                        SimpleDateFormat sdfTime = new SimpleDateFormat("hh:mm");
-                        String date = sdfDate.format(context.getSource().getStartedTime().getTime());
-                        String start = sdfTime.format(context.getSource().getStartedTime().getTime());
-                        String end = sdfTime.format(context.getSource().getClosedTime().getTime());
-
-                        return date + " " + start + "～" + end;
+                        String eventDate = sdfDate.format(context.getSource().getStartedTime().getTime());
+                        return eventDate;
                     }
-                }).map(source, destination.getDateTimeHeld());
+                }).map(source, destination.getEventDate());
+
+                using(new Converter<Seminar, String>(){
+                    public String convert(MappingContext<Seminar, String> context) {
+                        SimpleDateFormat sdfTime = new SimpleDateFormat("hh:mm");
+                        String startTime = sdfTime.format(context.getSource().getStartedTime().getTime());
+                        return startTime;
+                    }
+                }).map(source, destination.getStartedTime());
+
+                using(new Converter<Seminar, String>(){
+                    public String convert(MappingContext<Seminar, String> context) {
+                        SimpleDateFormat sdfTime = new SimpleDateFormat("hh:mm");
+                        String endTime = sdfTime.format(context.getSource().getClosedTime().getTime());
+                        return endTime;
+                    }
+                }).map(source, destination.getClosedTime());
+
             }
         });
 
