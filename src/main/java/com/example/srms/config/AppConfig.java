@@ -7,7 +7,6 @@ import com.example.srms.web.form.SignUpForm;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
-import org.modelmapper.spi.MappingContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -24,45 +23,33 @@ public class AppConfig {
         mapper.addMappings(new PropertyMap<SignUpForm, SignUpDTO>() {
             @Override
             protected void configure() {
-                using(new Converter<SignUpForm, String>(){
-                    public String convert(MappingContext<SignUpForm, String> context) {
-                        return context.getSource().getFirstName() + " "
-                                + context.getSource().getLastName();
-                    }
-                }).map(source, destination.getFullName());
+                using((Converter<SignUpForm, String>) context -> context.getSource().getFirstName() + " "
+                        + context.getSource().getLastName()).map(source, destination.getFullName());
             }
         });
 
         mapper.addMappings(new PropertyMap<Seminar, SeminarDTO>() {
             @Override
             protected void configure() {
-                using(new Converter<Seminar, String>(){
-                    public String convert(MappingContext<Seminar, String> context) {
-                        SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy年MM月dd日");
-                        String eventDate = sdfDate.format(context.getSource().getStartedTime().getTime());
-                        return eventDate;
-                    }
+                using((Converter<Seminar, String>) context -> {
+                    SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy年MM月dd日");
+                    String eventDate = sdfDate.format(context.getSource().getStartedTime().getTime());
+                    return eventDate;
                 }).map(source, destination.getEventDate());
 
-                using(new Converter<Seminar, String>(){
-                    public String convert(MappingContext<Seminar, String> context) {
-                        SimpleDateFormat sdfTime = new SimpleDateFormat("hh:mm");
-                        String startTime = sdfTime.format(context.getSource().getStartedTime().getTime());
-                        return startTime;
-                    }
+                using((Converter<Seminar, String>) context -> {
+                    SimpleDateFormat sdfTime = new SimpleDateFormat("HH:m");
+                    String startTime = sdfTime.format(context.getSource().getStartedTime().getTime());
+                    return startTime;
                 }).map(source, destination.getStartedTime());
 
-                using(new Converter<Seminar, String>(){
-                    public String convert(MappingContext<Seminar, String> context) {
-                        SimpleDateFormat sdfTime = new SimpleDateFormat("hh:mm");
-                        String endTime = sdfTime.format(context.getSource().getClosedTime().getTime());
-                        return endTime;
-                    }
+                using((Converter<Seminar, String>) context -> {
+                    SimpleDateFormat sdfTime = new SimpleDateFormat("HH:m");
+                    String endTime = sdfTime.format(context.getSource().getClosedTime().getTime());
+                    return endTime;
                 }).map(source, destination.getClosedTime());
-
             }
         });
-
 
 
         return mapper;
