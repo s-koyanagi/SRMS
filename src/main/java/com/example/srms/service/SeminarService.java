@@ -26,7 +26,8 @@ public class SeminarService {
     }
 
     public List<SeminarDTO> getAllSeminarList(){
-        List<SeminarDTO> seminarDTOList = modelMapper.map(seminarDao.selectAllSeminarAndGuestInfo(), new TypeToken<List<SeminarDTO>>() {}.getType());
+        //List<SeminarDTO> seminarDTOList = modelMapper.map(seminarDao.selectAllSeminarAndGuestInfo(), new TypeToken<List<SeminarDTO>>() {}.getType());
+        List<SeminarDTO> seminarDTOList = seminarDao.selectAllSeminarAndGuestInfo().stream().map(x -> modelMapper.map(x, SeminarDTO.class)).collect(Collectors.toList());
         return seminarDTOList.stream().sorted(Comparator.comparingInt(SeminarDTO::getSeminarId).reversed()).collect(Collectors.toList());
     }
 
