@@ -103,7 +103,7 @@
 										<dt>[タイトル]</dt>
 										<dd th:text="${seminar.title}">第23回開発技術セミナー ~ほげほげほげほげ特集~</dd>
 										<dt>[開催日時]</dt>
-										<dd th:text="${seminar.dateTimeHeld}">2019年11月3日 18:30 ~ 20:00</dd>
+										<dd th:text="${seminar.eventDate}+'  '+${seminar.startedTime}+'〜'+${seminar.closedTime}">2019年11月3日 18:30 ~ 20:00</dd>
 										<dt>[講演者・タイトル]</dt>
 										<dd>
 											<table class="uk-table uk-table-divider uk-text-small uk-width-3-4">
