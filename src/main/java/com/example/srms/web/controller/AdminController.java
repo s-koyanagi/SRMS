@@ -61,7 +61,7 @@ public class AdminController {
     public Map<String, Object> getEditableSeminar(@PathVariable("seminarId") int seminarId){
         Map<String, Object> editableSeminar = new HashMap<>();
         editableSeminar.put("seminar", adminService.getSeminarInfo(seminarId));
-        editableSeminar.put("speaker", speakerService.findSpeaker(seminarId));
+        editableSeminar.put("speakers", speakerService.findSpeaker(seminarId));
         return editableSeminar;
     }
 }
