@@ -113,15 +113,14 @@ function editSeminar(seminarId){
         .get("http://localhost:8080/srms/admin/editableseminar/"+seminarId)
         .then(response => {
 
-            // let table_element　=　new String();
+            let table_element　=　new String();
             // let button_element = new String();
-            // for (var speaker of response.data.speakers){
-            //     table_element += '<tr>'+
-            //                         '<td>'+speaker.startedTime+'</td>'+
-            //                         '<td>'+speaker.theme+'</td>'+
-            //                         '<td>'+speaker.name+'</td>'+
-            //                      '</tr>';
-            // }
+            for (var speaker of response.data.speakers){
+                table_element += '<tr>'+
+                                    '<th><input class="uk-input" id="speakerName" type="text" value="'+speaker.name+'"></th>'+
+                                    '<th><input class="uk-input" id="speakerTitle" type="text" value="'+speaker.theme+'"></th>'+
+                                 '</tr>';
+            }
 
             // if(response.data.isEntered){
             //     button_element = '<div class="uk-text-warning uk-text-center uk-margin-bottom">既に参加申込済みです</div>'+
@@ -148,6 +147,10 @@ function editSeminar(seminarId){
                                                 '<div class="uk-form-controls">'+
                                                     '<input class="uk-input" id="seminarTitle" type="text" value="'+response.data.seminar.title+'">'+
                                                 '</div>'+
+                                                '<label class="uk-form-label" for="form-horizontal-text">開催日</label>'+
+                                                '<div class="uk-form-controls">'+
+                                                    '<input class="uk-input" id="seminarTitle" type="text" value="'+response.data.seminar.eventDate+'">'+
+                                                '</div>'+
                                                 '<label class="uk-form-label" for="form-horizontal-text">開始時間</label>'+
                                                 '<div class="uk-form-controls">'+
                                                     '<input class="uk-input" id="seminarTitle" type="text" value="'+response.data.seminar.startedTime+'">'+
@@ -156,6 +159,17 @@ function editSeminar(seminarId){
                                                 '<div class="uk-form-controls">'+
                                                     '<input class="uk-input" id="seminarTitle" type="text" value="'+response.data.seminar.closedTime+'">'+
                                                 '</div>'+
+                                                '<table class="uk-table uk-table-hover uk-table-middle uk-table-divider">'+
+                                                    '<thead>'+
+                                                        '<tr>'+
+                                                            '<th>講演者</th>'+
+                                                            '<th>タイトル</th>'+
+                                                        '</tr>'+
+                                                    '</thead>'+
+                                                    '<tbody>'+
+                                                        table_element+
+                                                    '</tbody>'+
+                                                '</table>'+
                                             '</div>'+
                                         '</form>'+
                                     '</div>'+
