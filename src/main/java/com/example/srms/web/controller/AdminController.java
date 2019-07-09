@@ -1,10 +1,16 @@
 package com.example.srms.web.controller;
 
+import com.example.srms.domain.dto.GuestDTO;
+import com.example.srms.domain.entity.Seminar;
 import com.example.srms.domain.entity.User;
 import com.example.srms.service.AdminService;
 import com.example.srms.service.DashboardService;
 import com.example.srms.service.SeminarService;
 import com.example.srms.service.SpeakerService;
+import com.example.srms.web.form.EntryForm;
+import com.example.srms.web.form.SeminarForm;
+import com.example.srms.web.form.SpeakerForm;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -12,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -29,6 +36,9 @@ public class AdminController {
 
     @Autowired
     SpeakerService speakerService;
+
+    @Autowired
+    ModelMapper modelMapper;
 
     @RequestMapping(value={""}, method = RequestMethod.GET)
     public ModelAndView index(ModelAndView mv, @AuthenticationPrincipal User userDetails){
@@ -64,4 +74,14 @@ public class AdminController {
         editableSeminar.put("speakers", speakerService.findSpeaker(seminarId));
         return editableSeminar;
     }
+
+    @CrossOrigin
+    @ResponseBody
+    @RequestMapping(value="/editablesubmit", method=RequestMethod.POST)
+    public boolean ajaxRegistration(@RequestPart ("seminarValue") SeminarForm seminarForm,
+                                    @RequestPart ("speakerValue") List<SpeakerForm> speakerFormList,
+                                    @AuthenticationPrincipal User userDetails){
+        return true;
+    }
+
 }
