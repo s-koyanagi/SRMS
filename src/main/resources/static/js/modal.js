@@ -114,11 +114,14 @@ function editSeminar(seminarId){
         .then(response => {
 
             let table_element　=　new String();
+            let numberOfSpeaker = 0;
             // let button_element = new String();
             for (var speaker of response.data.speakers){
+                numberOfSpeaker++;
                 table_element += '<tr>'+
-                                    '<th><input class="uk-input" id="speakerName" type="text" value="'+speaker.name+'"></th>'+
-                                    '<th><input class="uk-input" id="speakerTitle" type="text" value="'+speaker.theme+'"></th>'+
+                                    '<input type="hidden" id="speakerId'+numberOfSpeaker+'" value='+speaker.speakerId+'>'+
+                                    '<th><input class="uk-input" id="speakerName'+numberOfSpeaker+'" type="text" value="'+speaker.name+'"></th>'+
+                                    '<th><input class="uk-input" id="speakerTitle'+numberOfSpeaker+'" type="text" value="'+speaker.theme+'"></th>'+
                                  '</tr>';
             }
 
@@ -149,16 +152,20 @@ function editSeminar(seminarId){
                                                 '</div>'+
                                                 '<label class="uk-form-label" for="form-horizontal-text">開催日</label>'+
                                                 '<div class="uk-form-controls">'+
-                                                    '<input class="uk-input" id="seminarTitle" type="text" value="'+response.data.seminar.eventDate+'">'+
+                                                    '<input class="uk-input" id="eventDate" type="text" value="'+response.data.seminar.eventDate+'">'+
                                                 '</div>'+
                                                 '<label class="uk-form-label" for="form-horizontal-text">開始時間</label>'+
                                                 '<div class="uk-form-controls">'+
-                                                    '<input class="uk-input" id="seminarTitle" type="text" value="'+response.data.seminar.startedTime+'">'+
+                                                    '<input class="uk-input" id="startedTime" type="text" value="'+response.data.seminar.startedTime+'">'+
                                                 '</div>'+
                                                 '<label class="uk-form-label" for="form-horizontal-text">終了時間</label>'+
                                                 '<div class="uk-form-controls">'+
-                                                    '<input class="uk-input" id="seminarTitle" type="text" value="'+response.data.seminar.closedTime+'">'+
+                                                    '<input class="uk-input" id="closedTime" type="text" value="'+response.data.seminar.closedTime+'">'+
                                                 '</div>'+
+                                            '</div>'+
+                                        '</form>'+
+                                        '<form id="editSpeakerForm" method="POST" enctype="multipart/form-data">'+
+                                            '<div class="uk-margin">'+
                                                 '<table class="uk-table uk-table-hover uk-table-middle uk-table-divider">'+
                                                     '<thead>'+
                                                         '<tr>'+
@@ -166,22 +173,66 @@ function editSeminar(seminarId){
                                                             '<th>タイトル</th>'+
                                                         '</tr>'+
                                                     '</thead>'+
-                                                    '<tbody>'+
+                                                    '<tbody id="speakerList">'+
                                                         table_element+
                                                     '</tbody>'+
                                                 '</table>'+
-                                            '</div>'+
-                                        '</form>'+
+                                            '</div>'+ 
+                                        '</form>'+  
                                     '</div>'+
                                     '<div class="uk-modal-footer uk-text-center">'+
-                                        '<button onclick="seminarEditSubmit()" class="uk-button uk-button-primary" type="button">適用</button>'+
+                                        '<button onclick="editableInfoSubmit()" class="uk-button uk-button-primary" type="button">適用</button>'+
                                     '</div>'+
                                 '</div>'+
                             '</div>';
-            UIkit.modal(element).show();
+            UIkit.modal(element).show();                  
         })
 
         .catch(error => {
             UIkit.modal.alert('取得失敗!')
         });
+}
+
+function addSpeaker(){
+    const target = document.getElementById('addSpeakerSpace');
+    let addElement = document.createElement("div");
+    addElement.setAttribute("class","uk-form-controls uk-margin-small");
+    addElement.innerHTML = '<input class="uk-input uk-form-width-medium" id="form-horizontal-text" type="text" placeholder="Full name">'+
+                           '<input class="uk-input uk-width-1-2@l uk-margin-left" id="form-horizontal-text" type="text" placeholder="title">';
+    target.appendChild(addElement);
+}
+
+function editableInfoSubmit(){
+    const seminarValue = {
+        seminarId:document.forms.editSeminarForm.seminarId.value,
+        title:document.forms.editSeminarForm.seminarTitle.value,
+        eventDate:document.forms.editSeminarForm.eventDate.value,
+        startedTime:document.forms.editSeminarForm.startedTime.value,
+        closedTime:document.forms.editSeminarForm.closedTime.value
+    }
+    let speakerValue =[]
+    const tableBody = document.getElementById("speakerList");
+
+    for(var i=0, rowLen=tableBody.rows.length; i<rowLen; i++){
+        const data = {
+            speakerId:tableBody.rows[i].children[0].value,
+            name:tableBody.rows[i].cells[0].children[0].value,
+            theme:tableBody.rows[i].cells[1].children[0].value
+        }
+        speakerValue.push(data)
+    }
+
+    const formData = new FormData()
+    formData.append('seminarValue', new Blob([JSON.stringify(seminarValue)], {type : 'application/json'}))
+    formData.append('speakerValue', new Blob([JSON.stringify(speakerValue)], {type : 'application/json'}))
+
+    axios.post('http://localhost:8080/srms/admin/editablesubmit', formData)
+         .then(response => {
+            document.getElementById("modal-close").click();
+            UIkit.notification("<span uk-icon='icon: check; ratio: 1.5'></span> 参加申込を受け付けました",{status:'success',timeout: 1500});
+         })
+         .catch(error =>{
+             UIkit.modal().hide();
+         });
+
 }
