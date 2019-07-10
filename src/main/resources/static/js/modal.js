@@ -226,7 +226,7 @@ function editableInfoSubmit(){
     formData.append('seminarValue', new Blob([JSON.stringify(seminarValue)], {type : 'application/json'}))
     formData.append('speakerValue', new Blob([JSON.stringify(speakerValue)], {type : 'application/json'}))
 
-    axios.post('http://localhost:8080/srms/admin/editablesubmit', formData)
+    axios.post('http://localhost:8080/srms/admin/applyedits', formData)
          .then(response => {
             document.getElementById("modal-close").click();
             UIkit.notification("<span uk-icon='icon: check; ratio: 1.5'></span> 参加申込を受け付けました",{status:'success',timeout: 1500});
@@ -234,5 +234,4 @@ function editableInfoSubmit(){
          .catch(error =>{
              UIkit.modal().hide();
          });
-
 }
