@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class AdminService {
@@ -29,5 +30,9 @@ public class AdminService {
     public List<GuestDTO> getGuestList(int seminarId){
         List<GuestDTO> guestDTOList = modelMapper.map(guestDao.selectGuestListBySeminarId(seminarId), new TypeToken<List<GuestDTO>>() {}.getType());
         return guestDTOList;
+    }
+
+    public boolean registration (Map<String, Object> editData){
+        return true;
     }
 }
