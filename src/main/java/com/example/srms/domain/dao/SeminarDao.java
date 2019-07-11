@@ -23,7 +23,7 @@ public interface SeminarDao {
     @Select
     Seminar selectBySeminarId(int seminarId);
 
-    @Update
-    int updateBySeminarId(SeminarDTO seminar);
+    @Update(sqlFile = true)
+    int updateBySeminarId(SeminarDTO seminarDTO);
 
 }
