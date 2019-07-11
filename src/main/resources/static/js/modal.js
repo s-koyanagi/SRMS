@@ -229,7 +229,8 @@ function editableInfoSubmit(){
     axios.post('http://localhost:8080/srms/admin/applyedits', formData)
          .then(response => {
             document.getElementById("modal-close").click();
-            UIkit.notification("<span uk-icon='icon: check; ratio: 1.5'></span> 参加申込を受け付けました",{status:'success',timeout: 1500});
+            location.reload();
+            UIkit.notification("<span uk-icon='icon: check; ratio: 1.5'></span> 編集内容を反映しました",{status:'success',timeout: 1500});
          })
          .catch(error =>{
              UIkit.modal().hide();
