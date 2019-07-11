@@ -16,7 +16,8 @@ public class SeminarDTO {
     private String eventDate;
     private String startedTime;
     private String closedTime;
-    private String dateTimeHeld;
+    private String startedDateTime;
+    private String closedDateTime;
 
     private Date createdDateTime;
     private Date updatedDateTime;
