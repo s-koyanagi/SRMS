@@ -1,15 +1,12 @@
 package com.example.srms.web.controller;
 
-import com.example.srms.domain.dto.GuestDTO;
 import com.example.srms.domain.dto.SeminarDTO;
 import com.example.srms.domain.dto.SpeakerDTO;
-import com.example.srms.domain.entity.Seminar;
 import com.example.srms.domain.entity.User;
 import com.example.srms.service.AdminService;
 import com.example.srms.service.DashboardService;
 import com.example.srms.service.SeminarService;
 import com.example.srms.service.SpeakerService;
-import com.example.srms.web.form.EntryForm;
 import com.example.srms.web.form.SeminarForm;
 import com.example.srms.web.form.SpeakerForm;
 import org.modelmapper.ModelMapper;
@@ -84,10 +81,9 @@ public class AdminController {
     public boolean applyEdits(@RequestPart ("seminarValue") SeminarForm seminarForm,
                                     @RequestPart ("speakerValue") List<SpeakerForm> speakerFormList,
                                     @AuthenticationPrincipal User userDetails){
-        Map<String, Object> editData= new HashMap<>();
-        editData.put("seminarData", modelMapper.map(seminarForm, SeminarDTO.class));
-        editData.put("speakerDataList", modelMapper.map(speakerFormList,new TypeToken<List<SpeakerDTO>>() {}.getType()));
-
+        SeminarDTO seminarDTO = modelMapper.map(seminarForm, SeminarDTO.class);
+        List<SpeakerDTO> speakerDTOList = modelMapper.map(speakerFormList,new TypeToken<List<SpeakerDTO>>() {}.getType());
+        adminService.registration(seminarDTO,speakerDTOList);
         return true;
     }
 
