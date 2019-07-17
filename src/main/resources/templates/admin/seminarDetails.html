@@ -93,13 +93,13 @@
 									<div class="uk-width-auto"><h4>Seminar details</h4></div>
 									<div class="uk-width-expand uk-text-right panel-icons">
 										<a th:attr="onclick='editSeminar(' + ${seminar.seminarId} + ');'" class="uk-icon-link" title="Edit" data-uk-tooltip ratio=1.5 data-uk-icon="icon: pencil"></a>
-										<a th:href="#" class="uk-icon-link uk-margin-left" title="Delete" ratio=1.5 data-uk-tooltip data-uk-icon="icon: trash"></a>
+										<a href="#" class="uk-icon-link uk-margin-left" title="Delete" ratio=1.5 data-uk-tooltip data-uk-icon="icon: trash"></a>
 									</div>
 								</div>
 							</div>
-							<div id="detailsSpace" class="uk-card-body uk-width-1-1@l">
+							<div class="uk-card-body uk-width-1-1@l">
 								<h3 class="uk-heading-divider">概要</h3>
-									<dl class="uk-description-list">
+									<dl id="detailsSpace" class="uk-description-list">
 										<dt>[タイトル]</dt>
 										<dd th:text="${seminar.title}">第23回開発技術セミナー ~ほげほげほげほげ特集~</dd>
 										<dt>[開催日時]</dt>
