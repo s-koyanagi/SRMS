@@ -78,13 +78,18 @@ public class AdminController {
     @CrossOrigin
     @ResponseBody
     @RequestMapping(value="/applyedits", method=RequestMethod.POST)
-    public boolean applyEdits(@RequestPart ("seminarValue") SeminarForm seminarForm,
+    public Map<String, Object> applyEdits(@RequestPart ("seminarValue") SeminarForm seminarForm,
                                     @RequestPart ("speakerValue") List<SpeakerForm> speakerFormList,
                                     @AuthenticationPrincipal User userDetails){
+        Map updateContents = new HashMap();
         SeminarDTO seminarDTO = modelMapper.map(seminarForm, SeminarDTO.class);
         List<SpeakerDTO> speakerDTOList = modelMapper.map(speakerFormList,new TypeToken<List<SpeakerDTO>>() {}.getType());
-        adminService.registration(seminarDTO,speakerDTOList);
-        return true;
+        if(adminService.registration(seminarDTO,speakerDTOList)){
+            updateContents.put("seminar",seminarDTO);
+            updateContents.put("speakers",speakerDTOList);
+            return updateContents;
+        }
+        return updateContents;
     }
 
 }
