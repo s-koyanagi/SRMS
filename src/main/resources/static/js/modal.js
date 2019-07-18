@@ -182,15 +182,6 @@ function editSeminar(seminarId){
         });
 }
 
-function addSpeaker(){
-    const target = document.getElementById('addSpeakerSpace');
-    let addElement = document.createElement("div");
-    addElement.setAttribute("class","uk-form-controls uk-margin-small");
-    addElement.innerHTML = '<input class="uk-input uk-form-width-medium" id="form-horizontal-text" type="text" placeholder="Full name">'+
-                           '<input class="uk-input uk-width-1-2@l uk-margin-left" id="form-horizontal-text" type="text" placeholder="title">';
-    target.appendChild(addElement);
-}
-
 function editableInfoSubmit(){
     const seminarValue = {
         seminarId:document.forms.editSeminarForm.seminarId.value,
@@ -247,6 +238,15 @@ function editableInfoSubmit(){
          });
 }
 
+function addSpeaker(){
+    const target = document.getElementById('speakerList');
+    let addElement = document.createElement("tr");
+    //addElement.setAttribute("class","uk-form-controls uk-margin-small");
+    addElement.innerHTML = '<th><input class="uk-input" type="text"></th>'+
+                           '<th><input class="uk-input" type="text"></th>';
+    target.appendChild(addElement);
+}
+
 function addSeminar(){
     if(document.querySelector(".uk-modal")){
         document.getElementById("modal-close").remove();
@@ -263,7 +263,7 @@ function addSeminar(){
                                 '<h4>新規作成</h4>'+
                             '</div>'+
                             '<div class="uk-modal-body">'+
-                                '<form id="editSeminarForm" method="POST" enctype="multipart/form-data">'+
+                                '<form id="addSeminarForm" method="POST" enctype="multipart/form-data">'+
                                     '<input type="hidden" id="seminarId">'+
                                     '<div class="uk-margin">'+
                                         '<label class="uk-form-label" for="form-horizontal-text">セミナー名</label>'+
@@ -284,7 +284,7 @@ function addSeminar(){
                                         '</div>'+
                                     '</div>'+
                                 '</form>'+
-                                '<form id="editSpeakerForm" method="POST" enctype="multipart/form-data">'+
+                                '<form id="addSpeakerForm" method="POST" enctype="multipart/form-data">'+
                                     '<div class="uk-margin">'+
                                         '<table class="uk-table uk-table-hover uk-table-middle uk-table-divider">'+
                                             '<thead>'+
@@ -304,14 +304,71 @@ function addSeminar(){
                                                 '</tr>'+
                                             '</tbody>'+
                                         '</table>'+
+                                        '<a onclick="addSpeaker()">講演者を追加する</a>'+
                                     '</div>'+ 
                                 '</form>'+  
                             '</div>'+
                             '<div class="uk-modal-footer uk-text-center">'+
-                                '<button onclick="editableInfoSubmit()" class="uk-button uk-button-primary" type="button">適用</button>'+
+                                '<button onclick="addSeminarSubmit()" class="uk-button uk-button-primary" type="button">適用</button>'+
                             '</div>'+
                         '</div>'+
                     '</div>';
     UIkit.modal(element).show();                  
 }
+
+function addSeminarSubmit(){
+    const seminarValue = {
+        //seminarId:document.forms.editSeminarForm.seminarId.value,
+        title:document.forms.addSeminarForm.seminarTitle.value,
+        eventDate:document.forms.addSeminarForm.eventDate.value,
+        startedTime:document.forms.addSeminarForm.startedTime.value,
+        closedTime:document.forms.addSeminarForm.closedTime.value
+    }
+    let speakerValue =[]
+    const tableBody = document.getElementById("speakerList");
+
+    for(var i=0, rowLen=tableBody.rows.length; i<rowLen; i++){
+        const data = {
+            name:tableBody.rows[i].cells[0].children[0].value,
+            theme:tableBody.rows[i].cells[1].children[0].value
+        }
+        speakerValue.push(data)
+    }
+
+    const formData = new FormData()
+    formData.append('seminarValue', new Blob([JSON.stringify(seminarValue)], {type : 'application/json'}))
+    formData.append('speakerValue', new Blob([JSON.stringify(speakerValue)], {type : 'application/json'}))
+
+    axios.post('http://localhost:8080/srms/admin/createseminar', formData)
+         .then(response => {
+            // const target = document.getElementById('detailsSpace');
+            // let table_element　=　new String();
+            // for (var speaker of response.data.speakers){
+            //     table_element += '<tr>'+
+            //                         '<td>'+speaker.name+'</td>'+
+            //                         '<td>'+speaker.theme+'</td>'+
+            //                      '</tr>';
+            // }
+
+            // target.innerHTML = '<dt>[タイトル]</dt>'+
+            //                     '<dd>'+response.data.seminar.title+'</dd>'+
+            //                     '<dt>[開催日時]</dt>'+
+            //                     '<dd>'+response.data.seminar.eventDate+' '+response.data.seminar.startedTime+'～'+response.data.seminar.closedTime+'</dd>'+
+            //                     '<dt>[講演者・タイトル]</dt>'+
+            //                     '<dd>'+
+            //                         '<table class="uk-table uk-table-divider uk-text-small uk-width-3-4">'+
+            //                             '<tbody>'+
+            //                                 table_element+
+            //                             '</tbody>'+
+            //                         '</table>'+
+            //                     '</dd>';
+
+            document.getElementById("modal-close").click();
+            UIkit.notification("<span uk-icon='icon: check; ratio: 1.5'></span> 作成しました",{status:'success',timeout: 1500});
+         })
+         .catch(error =>{
+             UIkit.modal().hide();
+         });
+}
+
 
