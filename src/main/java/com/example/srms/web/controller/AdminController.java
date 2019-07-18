@@ -84,12 +84,24 @@ public class AdminController {
         Map updateContents = new HashMap();
         SeminarDTO seminarDTO = modelMapper.map(seminarForm, SeminarDTO.class);
         List<SpeakerDTO> speakerDTOList = modelMapper.map(speakerFormList,new TypeToken<List<SpeakerDTO>>() {}.getType());
-        if(adminService.registration(seminarDTO,speakerDTOList)){
+        if(adminService.registerEditInfo(seminarDTO,speakerDTOList)){
             updateContents.put("seminar",seminarDTO);
             updateContents.put("speakers",speakerDTOList);
             return updateContents;
         }
         return updateContents;
+    }
+
+    @CrossOrigin
+    @ResponseBody
+    @RequestMapping(value="/createseminar", method=RequestMethod.POST)
+    public boolean createseminar (@RequestPart ("seminarValue") SeminarForm seminarForm,
+                                  @RequestPart ("speakerValue") List<SpeakerForm> speakerFormList,
+                                  @AuthenticationPrincipal User user){
+        SeminarDTO seminarDTO = modelMapper.map(seminarForm, SeminarDTO.class);
+        List<SpeakerDTO> speakerDTOList = modelMapper.map(speakerFormList,new TypeToken<List<SpeakerDTO>>() {}.getType());
+        adminService.registerCreateInfo(seminarDTO,speakerDTOList);
+        return false;
     }
 
 }
