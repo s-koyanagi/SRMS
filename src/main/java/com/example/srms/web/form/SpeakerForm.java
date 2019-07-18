@@ -9,7 +9,7 @@ import javax.validation.constraints.NotEmpty;
 @Setter
 public class SpeakerForm {
 
-    private int speakerId;
+    private Integer speakerId;
     @NotEmpty
     private String name;
     @NotEmpty
