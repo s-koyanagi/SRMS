@@ -13,8 +13,8 @@ import java.util.Date;
 public class Guest {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="guest_id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(sequence = "GUESTS_GUEST_ID_SEQ")
     private int guestId;
     @Column(name="seminar_id")
     private int seminarId;

@@ -14,8 +14,9 @@ import java.util.Date;
 public class Speaker {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "speaker_id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(sequence = "SPEAKERS_SPEAKER_ID_SEQ")
+    @Column(name="speaker_id")
     private int speakerId;
     @Column(name="seminar_id")
     private int seminarId;

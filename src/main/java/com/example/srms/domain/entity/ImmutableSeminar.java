@@ -11,8 +11,10 @@ import java.util.Date;
 public class ImmutableSeminar {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(sequence = "SEMINARS_SEMINAR_ID_SEQ")
+    @Column(name="seminar_id")
+    private Integer seminarId;
     @Column(name="title")
     private String title;
     @Column(name = "overview")
@@ -32,7 +34,5 @@ public class ImmutableSeminar {
     @Version
     @Column(name = "version")
     private Integer version;
-
-
 
 }
