@@ -2,6 +2,7 @@ package com.example.srms.domain.dao;
 
 import com.example.srms.domain.dto.SpeakerDTO;
 import com.example.srms.domain.entity.Speaker;
+import org.seasar.doma.BatchInsert;
 import org.seasar.doma.BatchUpdate;
 import org.seasar.doma.Dao;
 import org.seasar.doma.Select;
@@ -18,4 +19,7 @@ public interface SpeakerDao {
 
     @BatchUpdate(sqlFile = true)
     int[] updateBySpeakerId(List<SpeakerDTO> speakerDTOList);
+
+    @BatchInsert
+    int[] insert(List<Speaker> speakerList);
 }
