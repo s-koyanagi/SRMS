@@ -57,6 +57,7 @@ public class AdminService {
         ImmutableSeminar result = seminarDao.insert(seminar).getEntity();
 
         List<Speaker> speakerList = speakerDTOList.stream().map(x -> {
+            x.setSpeakerId(-1);
             x.setSeminarId(result.getSeminarId());
             x.setCreatedDateTime(new Date());
             x.setStartedTime(new Time(12,30,0));
