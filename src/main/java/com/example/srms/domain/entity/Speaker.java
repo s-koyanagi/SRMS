@@ -34,8 +34,5 @@ public class Speaker {
     private Date updatedDateTime;
     @Column(name="deleted_at")
     private Date deletedDateTime;
-    @Version
-    @Column(name="version")
-    private Integer version;
 
 }
