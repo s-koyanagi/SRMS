@@ -14,6 +14,7 @@ apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'idea'
+
 idea.module.inheritOutputDirs = true
 
 processResources.destinationDir = compileJava.destinationDir
@@ -32,9 +33,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.seasar.doma.boot:doma-spring-boot-starter:1.1.1'
-	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity4'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity4:3.0.1.RELEASE'
 	implementation 'org.projectlombok:lombok:1.16.22'
 	implementation 'org.seasar.doma:doma:2.24.0'
 	implementation 'com.h2database:h2'
     implementation 'org.modelmapper:modelmapper:0.7.5'
+	annotationProcessor "org.projectlombok:lombok:1.16.22"
+
 }
