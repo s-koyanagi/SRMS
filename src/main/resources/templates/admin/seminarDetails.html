@@ -19,68 +19,13 @@
 	<body>
 
 		<!--HEADER-->
-		<header id="top-head" class="uk-position-fixed">
-			<div class="uk-container uk-container-expand uk-background-primary">
-				<nav class="uk-navbar uk-light" data-uk-navbar="mode:click; duration: 250">
-					<div class="uk-navbar-left">
-						<div class="uk-navbar-item uk-hidden@m">
-							<a class="uk-logo" href="#"><img class="custom-logo" th:src="@{/img/dashboard-logo-white.svg}" src="../../static/img/dashboard-logo-white.svg" alt=""></a>
-						</div>
-						<ul class="uk-navbar-nav uk-visible@m">
-							<li class="uk-margin-top"><h5>Seminar management</h5></li>
-						</ul>
-					</div>
-					<div class="uk-navbar-right">
-						<ul class="uk-navbar-nav">
-							<li><a href="#" data-uk-icon="icon: settings" title="Settings" data-uk-tooltip></a></li>
-							<li><a href="#" data-uk-icon="icon:  sign-out" title="Sign Out" data-uk-tooltip></a></li>
-						</ul>
-					</div>
-				</nav>
-			</div>
-		</header>
+		<div th:replace="util :: header(displayName='Seminar Details')"></div>
 		<!--/HEADER-->
+
 		<!-- LEFT BAR -->
-		<aside id="left-col" class="uk-light uk-visible@m">
-			<div class="left-logo uk-flex uk-flex-middle uk-text-center">
-				<div class="uk-margin-left">INTERTECH SEMINAR</div>
-			</div>
-			<div class="left-content-box  content-box-dark">
-				<img src="../../static/img/avatar.svg" th:src="@{/img/avatar.svg}" alt="" class="uk-border-circle profile-img">
-				<h4 class="uk-text-center uk-margin-remove-vertical text-light">小柳 匠平</h4>				
-				<div class="uk-position-relative uk-text-center uk-display-block">
-				    <div href="#" class="uk-text-small uk-text-muted uk-display-block uk-text-center">Admin</div>
-				</div>
-			</div>
-			
-			<div class="left-nav-wrap">
-				<ul class="uk-nav uk-nav-default uk-nav-parent-icon" data-uk-nav>
-					<li class="uk-nav-header">ADMIN ACTIONS</li>
-					<li><a href="#"><span data-uk-icon="icon: comments" class="uk-margin-small-right"></span>お知らせ</a></li>
-					<li><a href="#"><span data-uk-icon="icon: users" class="uk-margin-small-right"></span>アカウント</a></li>
-					<li><a href="#"><span data-uk-icon="icon: file-text" class="uk-margin-small-right"></span>セミナー</a></li>
-					<li><a href="#"><span data-uk-icon="icon: lifesaver" class="uk-margin-small-right"></span>Tips</a></li>
-				</ul>				
-			</div>
-			<div class="bar-bottom">
-				<ul class="uk-subnav uk-flex uk-flex-center uk-child-width-1-5" data-uk-grid>
-					<li>
-						<a href="#" class="uk-icon-link" data-uk-icon="icon: home" title="Home" data-uk-tooltip></a>
-					</li>
-					<li>
-						<a href="#" class="uk-icon-link" data-uk-icon="icon: settings" title="Settings" data-uk-tooltip></a>
-					</li>
-					<li>
-						<a href="#" class="uk-icon-link" data-uk-icon="icon: social"  title="Social" data-uk-tooltip></a>
-					</li>
-					
-					<li>
-						<a href="#" class="uk-icon-link" data-uk-tooltip="Sign out" data-uk-icon="icon: sign-out"></a>
-					</li>
-				</ul>
-			</div>
-		</aside>
+		<div th:replace="util :: leftBar()"></div>
 		<!-- /LEFT BAR -->
+
 		<!-- CONTENT -->
 		<div id="content" data-uk-height-viewport="expand: true">
 			<div class="uk-container uk-container-expand">
@@ -90,7 +35,7 @@
 						<div class="uk-card uk-card-default uk-card-small">
 							<div class="uk-card-header">
 								<div class="uk-grid uk-grid-small">
-									<div class="uk-width-auto"><h4>Seminar details</h4></div>
+									<div class="uk-width-auto"><h4>Details</h4></div>
 									<div class="uk-width-expand uk-text-right panel-icons">
 										<a th:attr="onclick='editSeminar(' + ${seminar.seminarId} + ');'" class="uk-icon-link" title="Edit" data-uk-tooltip ratio=1.5 data-uk-icon="icon: pencil"></a>
 										<a href="#" class="uk-icon-link uk-margin-left" title="Delete" ratio=1.5 data-uk-tooltip data-uk-icon="icon: trash"></a>
